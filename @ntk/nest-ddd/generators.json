@@ -1,0 +1,14 @@
+{
+  "generators": {
+    "value-object": {
+      "factory": "./src/generators/value-object/generator",
+      "schema": "./src/generators/value-object/schema.json",
+      "description": "value-object generator"
+    },
+    "entity": {
+      "factory": "./src/generators/entity/generator",
+      "schema": "./src/generators/entity/schema.json",
+      "description": "entity generator"
+    }
+  }
+}

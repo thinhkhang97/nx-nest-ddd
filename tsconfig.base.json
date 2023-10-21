@@ -14,7 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ntk/nest-ddd": ["@ntk/nest-ddd/src/index.ts"],
+      "@nx-nest-ddd-plugins/domain": ["domain/src/index.ts"],
+      "@nx-nest-ddd-plugins/libs/core/application": [
+        "libs/core/application/src/index.ts"
+      ],
+      "@nx-nest-ddd-plugins/libs/core/domain": [
+        "libs/core/domain/src/index.ts"
+      ],
+      "@nx-nest-ddd-plugins/nest-ddd": ["nest-ddd/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
