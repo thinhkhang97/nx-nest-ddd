@@ -1,0 +1,7 @@
+export class <%= hyphenToCapital(name) %>Query {
+  public readonly props1: string;
+
+  constructor(props: <%= hyphenToCapital(name) %>Query) {
+    this.props1 = props.props1;
+  }
+}

@@ -14,6 +14,11 @@
       "factory": "./src/generators/aggregate/generator",
       "schema": "./src/generators/aggregate/schema.json",
       "description": "aggregate generator"
+    },
+    "application-query": {
+      "factory": "./src/generators/application/query/generator",
+      "schema": "./src/generators/application/query/schema.json",
+      "description": "application-query generator"
     }
   }
 }
