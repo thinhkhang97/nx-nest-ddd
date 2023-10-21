@@ -1,0 +1,12 @@
+export interface <%= capitalize(name) %>Props {}
+
+export class <%= capitalize(name) %> extends AggregateRoot<<%= capitalize(name) %>Props> {
+  public validate(): void {
+    return;
+  }
+
+  public static create(props: <%= capitalize(name) %>Props): <%= capitalize(name) %> {
+    const id = "";
+    return new <%= capitalize(name) %>({ id, props });
+  }
+}
