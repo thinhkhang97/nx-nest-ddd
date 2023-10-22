@@ -5,6 +5,7 @@ import domainEventGenerator from './event/generator';
 import { DomainGeneratorSchema } from './schema';
 import * as path from 'path';
 import domainExceptionGenerator from './exception/generator';
+import domainRepositoryGenerator from './repository/generator';
 
 export async function domainGenerator(
   tree: Tree,
@@ -31,6 +32,11 @@ export async function domainGenerator(
   });
   await domainExceptionGenerator(tree, {
     name: `${name}-not-found`,
+    sourceRoot: `libs/${name}/domain`,
+    skipFormat: true,
+  });
+  await domainRepositoryGenerator(tree, {
+    name,
     sourceRoot: `libs/${name}/domain`,
     skipFormat: true,
   });

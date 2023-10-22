@@ -1,4 +1,4 @@
-export class <%= capitalize(name) %>VO {
+export class <%= hyphenToCapital(name) %>VO {
  constructor(value: unknown) {
     // Update value
   }

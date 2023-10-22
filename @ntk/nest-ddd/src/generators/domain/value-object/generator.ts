@@ -1,6 +1,6 @@
 import { formatFiles, generateFiles, Tree } from '@nx/devkit';
 import * as path from 'path';
-import { appendContent, capitalize } from '../../../utils';
+import { appendContent, capitalize, hyphenToCapital } from '../../../utils';
 import { DomainValueObjectGeneratorSchema } from './schema';
 
 export async function domainValueObjectGenerator(
@@ -14,7 +14,7 @@ export async function domainValueObjectGenerator(
     `${sourceRoot}/src/value-objects`,
     {
       name,
-      capitalize,
+      hyphenToCapital,
     }
   );
   appendContent(
