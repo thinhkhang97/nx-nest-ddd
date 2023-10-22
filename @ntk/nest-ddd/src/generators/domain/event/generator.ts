@@ -7,7 +7,7 @@ export async function domainEventGenerator(
   tree: Tree,
   options: DomainEventGeneratorSchema
 ) {
-  const { name, sourceRoot } = options;
+  const { name, sourceRoot, skipFormat } = options;
   generateFiles(
     tree,
     path.join(__dirname, 'files'),
@@ -22,7 +22,10 @@ export async function domainEventGenerator(
     `${sourceRoot}/src/events/index.ts`,
     `export * from "./${name}.entity"`
   );
-  await formatFiles(tree);
+
+  if (!skipFormat) {
+    await formatFiles(tree);
+  }
 }
 
 export default domainEventGenerator;

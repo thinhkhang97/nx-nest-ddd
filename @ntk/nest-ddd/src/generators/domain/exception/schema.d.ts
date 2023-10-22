@@ -1,5 +1,5 @@
 import { ObjectGeneratorSchema } from '../../../interfaces';
 
-export interface DomainAggregateGeneratorSchema extends ObjectGeneratorSchema {
+export interface DomainExceptionGeneratorSchema extends ObjectGeneratorSchema {
   name: string;
 }

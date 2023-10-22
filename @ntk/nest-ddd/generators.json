@@ -29,6 +29,11 @@
       "factory": "./src/generators/domain/event/generator",
       "schema": "./src/generators/domain/event/schema.json",
       "description": "domain-event generator"
+    },
+    "domain-exception": {
+      "factory": "./src/generators/domain/exception/generator",
+      "schema": "./src/generators/domain/exception/schema.json",
+      "description": "domain-exception generator"
     }
   }
 }

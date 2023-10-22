@@ -22,3 +22,6 @@ export function hyphenToCapital(inputString: string): string {
     })
     .join('');
 }
+export function hyphenToSnakeCase(inputString: string): string {
+  return inputString.replace(/-/g, '_');
+}
