@@ -1,6 +1,6 @@
 import { formatFiles, generateFiles, Tree } from '@nx/devkit';
 import * as path from 'path';
-import { capitalize } from '../../../utils';
+import { hyphenToCapital } from '../../../utils';
 import { DomainAggregateGeneratorSchema } from './schema';
 
 export async function domainAggregateGenerator(
@@ -14,7 +14,7 @@ export async function domainAggregateGenerator(
     `${sourceRoot}/src/aggregates`,
     {
       name,
-      capitalize,
+      hyphenToCapital,
     }
   );
 

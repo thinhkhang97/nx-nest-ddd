@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ntk/nest-ddd": ["@ntk/nest-ddd/src/index.ts"],
+      "@ntk/nest-ddd": ["@ntk/nest-ddd/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

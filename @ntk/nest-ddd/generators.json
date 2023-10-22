@@ -24,6 +24,11 @@
       "factory": "./src/generators/domain/generator",
       "schema": "./src/generators/domain/schema.json",
       "description": "domain generator"
+    },
+    "domain-event": {
+      "factory": "./src/generators/domain/event/generator",
+      "schema": "./src/generators/domain/event/schema.json",
+      "description": "domain-event generator"
     }
   }
 }
