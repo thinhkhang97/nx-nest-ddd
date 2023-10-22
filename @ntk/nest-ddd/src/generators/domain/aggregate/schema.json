@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "Aggregate",
+  "$id": "DomainAggregate",
   "title": "",
   "type": "object",
   "properties": {

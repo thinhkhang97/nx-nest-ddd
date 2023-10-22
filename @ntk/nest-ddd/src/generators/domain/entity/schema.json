@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "ValueObject",
+  "$id": "DomainEntity",
   "title": "",
   "type": "object",
   "properties": {
@@ -11,7 +11,7 @@
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What is the name of value object?"
+      "x-prompt": "What name would you like to use?"
     },
     "sourceRoot": {
       "type": "string",

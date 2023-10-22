@@ -1,16 +1,16 @@
 import { formatFiles, generateFiles, Tree } from '@nx/devkit';
 import * as path from 'path';
-import { ValueObjectGeneratorSchema } from './schema';
-import { capitalize } from '../../utils';
+import { capitalize } from '../../../utils';
+import { DomainValueObjectGeneratorSchema } from './schema';
 
-export async function valueObjectGenerator(
+export async function domainValueObjectGenerator(
   tree: Tree,
-  options: ValueObjectGeneratorSchema
+  options: DomainValueObjectGeneratorSchema
 ) {
   const { name, sourceRoot } = options;
   generateFiles(
     tree,
-    path.join(__dirname, 'files/templates'),
+    path.join(__dirname, 'files'),
     `${sourceRoot}/src/value-objects`,
     {
       name,
@@ -30,4 +30,4 @@ export async function valueObjectGenerator(
   await formatFiles(tree);
 }
 
-export default valueObjectGenerator;
+export default domainValueObjectGenerator;

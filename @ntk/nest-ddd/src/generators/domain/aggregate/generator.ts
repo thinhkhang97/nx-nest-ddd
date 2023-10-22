@@ -1,16 +1,11 @@
-import {
-  addProjectConfiguration,
-  formatFiles,
-  generateFiles,
-  Tree,
-} from '@nx/devkit';
+import { formatFiles, generateFiles, Tree } from '@nx/devkit';
 import * as path from 'path';
-import { AggregateGeneratorSchema } from './schema';
-import { capitalize } from '../../utils';
+import { capitalize } from '../../../utils';
+import { DomainAggregateGeneratorSchema } from './schema';
 
-export async function aggregateGenerator(
+export async function domainAggregateGenerator(
   tree: Tree,
-  options: AggregateGeneratorSchema
+  options: DomainAggregateGeneratorSchema
 ) {
   const { name, sourceRoot } = options;
   generateFiles(
@@ -35,4 +30,4 @@ export async function aggregateGenerator(
   await formatFiles(tree);
 }
 
-export default aggregateGenerator;
+export default domainAggregateGenerator;
