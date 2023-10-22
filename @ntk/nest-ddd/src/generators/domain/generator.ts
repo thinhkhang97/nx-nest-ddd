@@ -6,6 +6,7 @@ import { DomainGeneratorSchema } from './schema';
 import * as path from 'path';
 import domainExceptionGenerator from './exception/generator';
 import domainRepositoryGenerator from './repository/generator';
+import domainServiceGenerator from './service/generator';
 
 export async function domainGenerator(
   tree: Tree,
@@ -36,6 +37,11 @@ export async function domainGenerator(
     skipFormat: true,
   });
   await domainRepositoryGenerator(tree, {
+    name,
+    sourceRoot: `libs/${name}/domain`,
+    skipFormat: true,
+  });
+  await domainServiceGenerator(tree, {
     name,
     sourceRoot: `libs/${name}/domain`,
     skipFormat: true,

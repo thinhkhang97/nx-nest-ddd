@@ -39,6 +39,11 @@
       "factory": "./src/generators/domain/repository/generator",
       "schema": "./src/generators/domain/repository/schema.json",
       "description": "domain-repository generator"
+    },
+    "domain-service": {
+      "factory": "./src/generators/domain/service/generator",
+      "schema": "./src/generators/domain/service/schema.json",
+      "description": "domain-service generator"
     }
   }
 }
