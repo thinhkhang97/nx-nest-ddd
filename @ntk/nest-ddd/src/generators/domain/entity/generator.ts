@@ -1,13 +1,13 @@
 import { formatFiles, generateFiles, Tree } from '@nx/devkit';
 import * as path from 'path';
-import { capitalize } from '../../../utils';
+import { appendContent, capitalize } from '../../../utils';
 import { DomainEntityGeneratorSchema } from './schema';
 
 export async function domainEntityGenerator(
   tree: Tree,
   options: DomainEntityGeneratorSchema
 ) {
-  const { name, sourceRoot } = options;
+  const { name, sourceRoot, skipFormat } = options;
   generateFiles(
     tree,
     path.join(__dirname, 'files'),
@@ -17,17 +17,15 @@ export async function domainEntityGenerator(
       capitalize,
     }
   );
-
-  let indexContent = '';
-  const indexFile = tree.read(`${sourceRoot}/src/entities/index.ts`);
-  if (indexFile) {
-    indexContent = indexFile.toString();
-  }
-  tree.write(
+  appendContent(
+    tree,
     `${sourceRoot}/src/entities/index.ts`,
-    `export * from "./${name}.entity"\n${indexContent}`
+    `export * from "./${name}.entity"`
   );
-  await formatFiles(tree);
+
+  if (!skipFormat) {
+    await formatFiles(tree);
+  }
 }
 
 export default domainEntityGenerator;

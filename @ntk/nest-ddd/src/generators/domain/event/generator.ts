@@ -1,12 +1,7 @@
-import {
-  addProjectConfiguration,
-  formatFiles,
-  generateFiles,
-  Tree,
-} from '@nx/devkit';
+import { formatFiles, generateFiles, Tree } from '@nx/devkit';
 import * as path from 'path';
+import { appendContent, hyphenToCapital } from '../../../utils';
 import { DomainEventGeneratorSchema } from './schema';
-import { hyphenToCapital } from '../../../utils';
 
 export async function domainEventGenerator(
   tree: Tree,
@@ -22,15 +17,10 @@ export async function domainEventGenerator(
       hyphenToCapital,
     }
   );
-
-  let indexContent = '';
-  const indexFile = tree.read(`${sourceRoot}/src/events/index.ts`);
-  if (indexFile) {
-    indexContent = indexFile.toString();
-  }
-  tree.write(
+  appendContent(
+    tree,
     `${sourceRoot}/src/events/index.ts`,
-    `export * from "./${name}.entity"\n${indexContent}`
+    `export * from "./${name}.entity"`
   );
   await formatFiles(tree);
 }

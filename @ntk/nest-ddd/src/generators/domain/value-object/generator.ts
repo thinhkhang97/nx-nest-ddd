@@ -1,13 +1,13 @@
 import { formatFiles, generateFiles, Tree } from '@nx/devkit';
 import * as path from 'path';
-import { capitalize } from '../../../utils';
+import { appendContent, capitalize } from '../../../utils';
 import { DomainValueObjectGeneratorSchema } from './schema';
 
 export async function domainValueObjectGenerator(
   tree: Tree,
   options: DomainValueObjectGeneratorSchema
 ) {
-  const { name, sourceRoot } = options;
+  const { name, sourceRoot, skipFormat } = options;
   generateFiles(
     tree,
     path.join(__dirname, 'files'),
@@ -17,17 +17,15 @@ export async function domainValueObjectGenerator(
       capitalize,
     }
   );
-
-  let indexContent = '';
-  const indexFile = tree.read(`${sourceRoot}/src/value-objects/index.ts`);
-  if (indexFile) {
-    indexContent = indexFile.toString();
-  }
-  tree.write(
+  appendContent(
+    tree,
     `${sourceRoot}/src/value-objects/index.ts`,
-    `export * from "./${name}.value-object"\n${indexContent}`
+    `export * from "./${name}.value-object"`
   );
-  await formatFiles(tree);
+
+  if (!skipFormat) {
+    await formatFiles(tree);
+  }
 }
 
 export default domainValueObjectGenerator;

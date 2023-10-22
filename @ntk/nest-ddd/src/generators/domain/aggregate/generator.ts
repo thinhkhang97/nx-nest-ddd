@@ -1,13 +1,13 @@
 import { formatFiles, generateFiles, Tree } from '@nx/devkit';
 import * as path from 'path';
-import { hyphenToCapital } from '../../../utils';
+import { appendContent, hyphenToCapital } from '../../../utils';
 import { DomainAggregateGeneratorSchema } from './schema';
 
 export async function domainAggregateGenerator(
   tree: Tree,
   options: DomainAggregateGeneratorSchema
 ) {
-  const { name, sourceRoot } = options;
+  const { name, sourceRoot, skipFormat } = options;
   generateFiles(
     tree,
     path.join(__dirname, 'files'),
@@ -17,17 +17,14 @@ export async function domainAggregateGenerator(
       hyphenToCapital,
     }
   );
-
-  let indexContent = '';
-  const indexFile = tree.read(`${sourceRoot}/src/aggregates/index.ts`);
-  if (indexFile) {
-    indexContent = indexFile.toString();
-  }
-  tree.write(
+  appendContent(
+    tree,
     `${sourceRoot}/src/aggregates/index.ts`,
-    `export * from "./${name}.aggregate"\n${indexContent}`
+    `export * from "./${name}.aggregate"`
   );
-  await formatFiles(tree);
+  if (!skipFormat) {
+    await formatFiles(tree);
+  }
 }
 
 export default domainAggregateGenerator;
