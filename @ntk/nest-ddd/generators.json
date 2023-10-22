@@ -19,6 +19,11 @@
       "factory": "./src/generators/domain/aggregate/generator",
       "schema": "./src/generators/domain/aggregate/schema.json",
       "description": "domain-aggregate generator"
+    },
+    "domain": {
+      "factory": "./src/generators/domain/generator",
+      "schema": "./src/generators/domain/schema.json",
+      "description": "domain generator"
     }
   }
 }
