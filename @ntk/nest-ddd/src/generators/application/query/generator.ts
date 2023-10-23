@@ -9,7 +9,7 @@ export async function applicationQueryGenerator(
   tree: Tree,
   options: ApplicationQueryGeneratorSchema
 ) {
-  const { name, sourceRoot } = options;
+  const { name, sourceRoot, skipFormat } = options;
   generateFiles(
     tree,
     path.join(__dirname, 'files'),
@@ -77,7 +77,9 @@ export async function applicationQueryGenerator(
 
   tree.write(`${sourceRoot}/src/queries/index.ts`, indexContent);
 
-  await formatFiles(tree);
+  if (!skipFormat) {
+    await formatFiles(tree);
+  }
 }
 
 export default applicationQueryGenerator;

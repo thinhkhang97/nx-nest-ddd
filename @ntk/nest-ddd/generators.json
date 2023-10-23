@@ -44,6 +44,11 @@
       "factory": "./src/generators/domain/service/generator",
       "schema": "./src/generators/domain/service/schema.json",
       "description": "domain-service generator"
+    },
+    "application": {
+      "factory": "./src/generators/application/generator",
+      "schema": "./src/generators/application/schema.json",
+      "description": "application generator"
     }
   }
 }

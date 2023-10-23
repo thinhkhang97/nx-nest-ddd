@@ -14,11 +14,10 @@ export async function domainGenerator(
 ) {
   const { name, tags } = options;
   await libraryGenerator(tree, {
+    ...options,
     name: `libs/${name}/domain`,
-    target: 'es2021',
     projectNameAndRootFormat: 'as-provided',
     tags: tags ? `layer:domain,${tags}` : `layer:domain`,
-    skipFormat: true,
   });
   tree.delete(`libs/${name}/domain/src/lib`);
   await domainAggregateGenerator(tree, {

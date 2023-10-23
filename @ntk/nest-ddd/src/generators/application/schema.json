@@ -1,21 +1,21 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "$id": "Domain",
+  "$id": "Application",
   "title": "",
   "type": "object",
   "properties": {
     "name": {
-      "description": "Domain name.",
+      "description": "Application name.",
       "type": "string",
       "$default": {
         "$source": "argv",
         "index": 0
       },
-      "x-prompt": "What is the domain name?",
+      "x-prompt": "What is the application name?",
       "pattern": "(?:^@[a-zA-Z0-9-*~][a-zA-Z0-9-*._~]*\\/[a-zA-Z0-9-~][a-zA-Z0-9-._~]*|^[a-zA-Z][^:]*)$"
     },
     "directory": {
-      "description": "A directory where the domain is placed.",
+      "description": "A directory where the application is placed.",
       "type": "string",
       "alias": "dir"
     },
@@ -25,7 +25,7 @@
       "enum": ["as-provided", "derived"]
     },
     "tags": {
-      "description": "Add tags to the domain (used for linting).",
+      "description": "Add tags to the application (used for linting).",
       "type": "string",
       "alias": "t"
     },
