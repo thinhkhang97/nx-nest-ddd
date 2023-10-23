@@ -1,4 +1,6 @@
-export interface <%= hyphenToCapital(name) %>Props {}
+export interface <%= hyphenToCapital(name) %>Props {
+  props: unknown;
+}
 
 export class <%= hyphenToCapital(name) %> {
   constructor(private readonly data: { id: string; props: <%= hyphenToCapital(name) %>Props }) {}
