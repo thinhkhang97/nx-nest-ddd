@@ -41,10 +41,10 @@ export async function applicationQueryGenerator(
   tree: Tree,
   options: ApplicationQueryGeneratorSchema
 ) {
-  const { name, sourceRoot, skipFormat } = options;
+  const { name, sourceRoot, skipFormat, templatePath } = options;
   generateFiles(
     tree,
-    path.join(__dirname, 'files'),
+    templatePath || path.join(__dirname, 'files'),
     `${sourceRoot}/src/queries`,
     {
       name,

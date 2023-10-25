@@ -1,0 +1,10 @@
+import { QueryBase, QueryProps } from '@stock-be/shared';
+
+export class <%= hyphenToCapital(name) %>Query extends QueryBase {
+  public readonly props1: string;
+
+  constructor(props: QueryProps<<%= hyphenToCapital(name) %>Query>) {
+    super();
+    this.props1 = props.props1;
+  }
+}

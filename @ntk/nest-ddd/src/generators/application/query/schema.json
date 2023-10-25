@@ -21,6 +21,14 @@
         "index": 1
       },
       "x-prompt": "What is the source root?"
+    },
+    "templatePath": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      }
     }
   },
   "required": ["name", "sourceRoot"]
