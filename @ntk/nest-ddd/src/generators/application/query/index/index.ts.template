@@ -1,6 +1,7 @@
+import { Provider } from '@nestjs/common';
 // Queries
 export * from './<%= name %>/<%= name %>.query';
 // Handlers
 import { <%= hyphenToCapital(name) %>QueryHandler } from './<%= name %>/<%= name %>.query-handler';
-export const queries = [<%= hyphenToCapital(name) %>QueryHandler];
+export const queryHandlers: Provider[] = [<%= hyphenToCapital(name) %>QueryHandler];
 

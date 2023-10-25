@@ -1,7 +1,9 @@
-import { formatFiles, Tree } from '@nx/devkit';
+import { Tree, formatFiles, generateFiles } from '@nx/devkit';
 import { libraryGenerator } from '@nx/nest';
-import { ApplicationGeneratorSchema } from './schema';
 import applicationQueryGenerator from './query/generator';
+import { ApplicationGeneratorSchema } from './schema';
+import * as path from 'path';
+import { hyphenToCapital } from '../../utils';
 
 export async function applicationGenerator(
   tree: Tree,
@@ -10,16 +12,32 @@ export async function applicationGenerator(
   const { name, tags, templatePath } = options;
   await libraryGenerator(tree, {
     ...options,
-    name: `libs/${name}/application`,
+    name: `${name}-application`,
+    directory: `libs/${name}/application`,
     projectNameAndRootFormat: 'as-provided',
     tags: tags ? `layer:application,${tags}` : `layer:application`,
   });
+  tree.delete(`libs/${name}/application/src/lib`);
+  tree.write(
+    `libs/${name}/application/src/index.ts`,
+    `export * from './modules/${name}-application.module';`
+  );
   await applicationQueryGenerator(tree, {
     name: `get-${name}`,
     sourceRoot: `libs/${name}/application`,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/queries`,
   });
+  generateFiles(
+    tree,
+    (templatePath && `${templatePath}/modules`) ||
+      path.join(__dirname, 'files/modules'),
+    `libs/${name}/application/src/modules`,
+    {
+      name,
+      hyphenToCapital,
+    }
+  );
   await formatFiles(tree);
 }
 

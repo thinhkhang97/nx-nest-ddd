@@ -25,7 +25,7 @@ function updateIndexFile(
   // Update query array
   indexContent = tsquery.replace(
     indexContent,
-    'Identifier[name="queries"] ~ ArrayLiteralExpression',
+    'Identifier[name="queryHandlers"] ~ ArrayLiteralExpression',
     (node: ts.ArrayLiteralExpression) => {
       return `[${node.elements
         .map((e) => e.getText())

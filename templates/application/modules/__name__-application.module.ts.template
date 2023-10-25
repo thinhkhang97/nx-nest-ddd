@@ -1,0 +1,9 @@
+import { Module } from '@nestjs/common';
+import { queryHandlers } from '../queries';
+
+@Module({
+  controllers: [],
+  providers: [...queryHandlers],
+  exports: [...queryHandlers],
+})
+export class <%= hyphenToCapital(name) %>ApplicationModule {}

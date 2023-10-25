@@ -15,7 +15,8 @@ export async function domainGenerator(
   const { name, tags, templatePath } = options;
   await libraryGenerator(tree, {
     ...options,
-    name: `libs/${name}/domain`,
+    name: `${name}-domain`,
+    directory: `libs/${name}/domain`,
     projectNameAndRootFormat: 'as-provided',
     tags: tags ? `layer:domain,${tags}` : `layer:domain`,
   });
