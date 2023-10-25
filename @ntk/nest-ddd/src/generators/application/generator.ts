@@ -1,10 +1,11 @@
 import { Tree, formatFiles, generateFiles } from '@nx/devkit';
 import { libraryGenerator } from '@nx/nest';
-import applicationQueryGenerator from './query/generator';
-import { ApplicationGeneratorSchema } from './schema';
 import * as path from 'path';
 import { hyphenToCapital } from '../../utils';
 import applicationCommandGenerator from './command/generator';
+import applicationEventGenerator from './event/generator';
+import applicationQueryGenerator from './query/generator';
+import { ApplicationGeneratorSchema } from './schema';
 
 export async function applicationGenerator(
   tree: Tree,
@@ -34,6 +35,13 @@ export async function applicationGenerator(
     sourceRoot: `libs/${name}/application`,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/commands`,
+  });
+  await applicationEventGenerator(tree, {
+    name: `notify-user-after-created-${name}`,
+    eventName: `created-${name}`,
+    sourceRoot: `libs/${name}/application`,
+    skipFormat: true,
+    templatePath: templatePath && `${templatePath}/events`,
   });
   generateFiles(
     tree,

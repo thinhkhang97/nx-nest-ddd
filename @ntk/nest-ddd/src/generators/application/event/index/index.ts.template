@@ -1,0 +1,5 @@
+import { Provider } from '@nestjs/common';
+// Handlers
+import { <%= hyphenToCapital(name) %>EventHandler } from './<%= name %>.event-handler';
+export const eventHandlers: Provider[] = [<%= hyphenToCapital(name) %>EventHandler];
+

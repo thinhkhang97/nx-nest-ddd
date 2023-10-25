@@ -54,6 +54,11 @@
       "factory": "./src/generators/application/command/generator",
       "schema": "./src/generators/application/command/schema.json",
       "description": "application-command generator"
+    },
+    "application-event": {
+      "factory": "./src/generators/application/event/generator",
+      "schema": "./src/generators/application/event/schema.json",
+      "description": "application-event generator"
     }
   }
 }
