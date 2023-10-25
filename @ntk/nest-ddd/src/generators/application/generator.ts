@@ -7,7 +7,7 @@ export async function applicationGenerator(
   tree: Tree,
   options: ApplicationGeneratorSchema
 ) {
-  const { name, tags } = options;
+  const { name, tags, templatePath } = options;
   await libraryGenerator(tree, {
     ...options,
     name: `libs/${name}/application`,
@@ -15,9 +15,10 @@ export async function applicationGenerator(
     tags: tags ? `layer:application,${tags}` : `layer:application`,
   });
   await applicationQueryGenerator(tree, {
-    name,
+    name: `get-${name}`,
     sourceRoot: `libs/${name}/application`,
     skipFormat: true,
+    templatePath: templatePath && `${templatePath}/queries`,
   });
   await formatFiles(tree);
 }

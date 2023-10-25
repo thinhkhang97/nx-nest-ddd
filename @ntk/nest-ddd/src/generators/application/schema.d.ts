@@ -22,4 +22,5 @@ export interface ApplicationGeneratorSchema {
   setParserOptionsProject?: boolean;
   skipPackageJson?: boolean;
   simpleName?: boolean;
+  templatePath?: string;
 }
