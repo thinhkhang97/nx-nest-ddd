@@ -4,6 +4,7 @@ import applicationQueryGenerator from './query/generator';
 import { ApplicationGeneratorSchema } from './schema';
 import * as path from 'path';
 import { hyphenToCapital } from '../../utils';
+import applicationCommandGenerator from './command/generator';
 
 export async function applicationGenerator(
   tree: Tree,
@@ -27,6 +28,12 @@ export async function applicationGenerator(
     sourceRoot: `libs/${name}/application`,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/queries`,
+  });
+  await applicationCommandGenerator(tree, {
+    name: `create-${name}`,
+    sourceRoot: `libs/${name}/application`,
+    skipFormat: true,
+    templatePath: templatePath && `${templatePath}/commands`,
   });
   generateFiles(
     tree,
