@@ -12,7 +12,7 @@ export async function domainGenerator(
   tree: Tree,
   options: DomainGeneratorSchema
 ) {
-  const { name, tags } = options;
+  const { name, tags, templatePath } = options;
   await libraryGenerator(tree, {
     ...options,
     name: `libs/${name}/domain`,
@@ -24,30 +24,37 @@ export async function domainGenerator(
     name,
     sourceRoot: `libs/${name}/domain`,
     skipFormat: true,
+    templatePath: templatePath && `${templatePath}/aggregates`,
   });
   await domainEventGenerator(tree, {
     name: `${name}-created`,
     sourceRoot: `libs/${name}/domain`,
     skipFormat: true,
+    templatePath: templatePath && `${templatePath}/events`,
   });
   await domainExceptionGenerator(tree, {
     name: `${name}-not-found`,
     sourceRoot: `libs/${name}/domain`,
     skipFormat: true,
+    templatePath: templatePath && `${templatePath}/exceptions`,
   });
   await domainRepositoryGenerator(tree, {
     name,
     sourceRoot: `libs/${name}/domain`,
     skipFormat: true,
+    templatePath: templatePath && `${templatePath}/repositories`,
   });
   await domainServiceGenerator(tree, {
     name,
     sourceRoot: `libs/${name}/domain`,
     skipFormat: true,
+    templatePath: templatePath && `${templatePath}/services`,
   });
   generateFiles(
     tree,
-    path.join(__dirname, 'files'),
+    templatePath
+      ? templatePath && `${templatePath}/files`
+      : path.join(__dirname, 'files'),
     `libs/${name}/domain/src`,
     {}
   );

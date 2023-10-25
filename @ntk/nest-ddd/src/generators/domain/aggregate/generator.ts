@@ -7,10 +7,10 @@ export async function domainAggregateGenerator(
   tree: Tree,
   options: DomainAggregateGeneratorSchema
 ) {
-  const { name, sourceRoot, skipFormat } = options;
+  const { name, sourceRoot, skipFormat, templatePath } = options;
   generateFiles(
     tree,
-    path.join(__dirname, 'files'),
+    templatePath || path.join(__dirname, 'files'),
     `${sourceRoot}/src/aggregates`,
     {
       name,

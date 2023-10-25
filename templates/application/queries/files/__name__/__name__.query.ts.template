@@ -1,4 +1,4 @@
-import { QueryBase, QueryProps } from '@stock-be/shared';
+import { QueryBase, QueryProps } from '@your-lib/shared';
 
 export class <%= hyphenToCapital(name) %>Query extends QueryBase {
   public readonly props1: string;

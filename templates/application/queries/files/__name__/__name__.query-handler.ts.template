@@ -1,5 +1,5 @@
 import { QueryHandler } from '@nestjs/cqrs';
-import { QueryHandlerBase } from '@stock-be/shared';
+import { QueryHandlerBase } from '@your-lib/shared';
 
 import { <%= hyphenToCapital(name) %>Query } from './<%= name %>.query';
 

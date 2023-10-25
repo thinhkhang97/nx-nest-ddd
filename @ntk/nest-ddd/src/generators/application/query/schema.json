@@ -24,11 +24,7 @@
     },
     "templatePath": {
       "type": "string",
-      "description": "",
-      "$default": {
-        "$source": "argv",
-        "index": 2
-      }
+      "description": "A directory where you place the custom template"
     }
   },
   "required": ["name", "sourceRoot"]
