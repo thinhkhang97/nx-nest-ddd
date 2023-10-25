@@ -1,0 +1,13 @@
+import { Injectable } from '@nestjs/common';
+import { createEventHandlerBase } from '@your-lib/shared';
+
+@Injectable()
+export class <%= hyphenToCapital(name) %>EventHandler extends createEventHandlerBase(
+  <%= hyphenToCapital(eventName) %>Event
+) {
+  constructor() {
+    super();
+  }
+
+  protected async execute(event: <%= hyphenToCapital(eventName) %>Event): Promise<void> {}
+}
