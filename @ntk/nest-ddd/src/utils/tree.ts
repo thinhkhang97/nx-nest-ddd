@@ -19,7 +19,7 @@ export function appendContentAfterLatestNode(
   const nodes = tsquery.match(contentAST, query);
   const latestNode = nodes[nodes.length - 1];
   if (!latestNode) {
-    throw new Error('Query result not found');
+    return;
   }
   const latestNodeContent = latestNode.getFullText();
   return originalContent.replace(
