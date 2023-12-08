@@ -1,7 +1,0 @@
-import { ExceptionBase } from '@your-lib/shared';
-
-export class <%= hyphenToCapital(name) %>Exception extends ExceptionBase {
-  constructor() {
-    super("<%= hyphenToSnakeCase(name) %>");
-  } 
-}

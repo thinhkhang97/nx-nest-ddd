@@ -1,39 +1,12 @@
 {
-  "root": true,
-  "ignorePatterns": ["**/*"],
-  "plugins": ["@nx"],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": "*.json",
-      "parser": "jsonc-eslint-parser",
-      "rules": {}
-    },
-    {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {
-        "@nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
       "rules": {}
     },
     {
       "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nx/javascript"],
       "rules": {}
     },
     {
@@ -42,6 +15,21 @@
         "jest": true
       },
       "rules": {}
+    },
+    {
+      "files": ["*.json"],
+      "parser": "jsonc-eslint-parser",
+      "rules": {
+        "@nx/dependency-checks": "error"
+      }
+    },
+    {
+      "files": ["./package.json", "./generators.json"],
+      "parser": "jsonc-eslint-parser",
+      "rules": {
+        "@nx/nx-plugin-checks": "error"
+      }
     }
-  ]
+  ],
+  "extends": ["./.eslintrc.base.json"]
 }

@@ -1,6 +1,0 @@
-
-import { <%= hyphenToCapital(name) %> } from '../aggregates/<%= name %>.aggregate';
-
-export abstract class <%= hyphenToCapital(name) %>Repository {
-  public abstract findOne(id: string): Promise<<%= hyphenToCapital(name) %>>;
-}

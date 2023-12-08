@@ -1,3 +1,0 @@
-export abstract class <%= hyphenToCapital(name) %>Service {
-  public abstract doSomething(value: unknown): Promise<void>;
-}
