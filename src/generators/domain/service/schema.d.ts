@@ -1,5 +1,6 @@
-import { ObjectGeneratorSchema } from '../../../interfaces';
+import { DomainComponentGeneratorSchema } from '../types';
 
-export interface DomainServiceGeneratorSchema extends ObjectGeneratorSchema {
+export interface DomainServiceGeneratorSchema
+  extends DomainComponentGeneratorSchema {
   name: string;
 }
