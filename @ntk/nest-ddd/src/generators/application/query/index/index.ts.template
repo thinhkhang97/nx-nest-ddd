@@ -1,6 +1,0 @@
-export * from './<%= name %>/<%= name %>.query';
-
-import { <%= hyphenToCapital(name) %>QueryHandler } from './<%= name %>/<%= name %>.query-handler';
-
-export const queries = [<%= hyphenToCapital(name) %>QueryHandler];
-

@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "ApplicationEvent",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What is the event will handle?"
+    },
+    "eventName": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What is the event handler name?"
+    },
+    "sourceRoot": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 2
+      },
+      "x-prompt": "What is the source root?"
+    },
+    "templatePath": {
+      "type": "string",
+      "description": "A directory where you place the custom template"
+    }
+  },
+  "required": ["eventName", "name", "sourceRoot"]
+}

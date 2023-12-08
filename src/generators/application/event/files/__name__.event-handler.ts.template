@@ -1,0 +1,12 @@
+import { EventHandler } from '@nestjs/cqrs';
+
+@EventHandler(<%= hyphenToCapital(eventName) %>Event)
+export class <%= hyphenToCapital(name) %>EventHandler {
+  constructor() {
+    // Initialize
+  }
+
+  protected async execute(event: <%= hyphenToCapital(eventName) %>Event): Promise<unknown> {
+    return;
+  }
+}

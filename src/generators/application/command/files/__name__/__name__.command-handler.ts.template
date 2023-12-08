@@ -1,0 +1,14 @@
+import { CommandHandler } from '@nestjs/cqrs';
+
+import { <%= hyphenToCapital(name) %>Command } from './<%= name %>.command';
+
+@CommandHandler(<%= hyphenToCapital(name) %>Command)
+export class <%= hyphenToCapital(name) %>CommandHandler {
+  constructor() {
+    // Initialize
+  }
+
+  protected async handle(command: <%= hyphenToCapital(name) %>Command): Promise<unknown> {
+    return;
+  }
+}
