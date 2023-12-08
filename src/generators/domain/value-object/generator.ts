@@ -7,22 +7,19 @@ export async function domainValueObjectGenerator(
   tree: Tree,
   options: DomainValueObjectGeneratorSchema
 ) {
-  const { name, sourceRoot, skipFormat, templatePath } = options;
-  generateFiles(
-    tree,
-    templatePath || path.join(__dirname, 'files'),
-    `${sourceRoot}/src/value-objects`,
-    {
-      name,
-      hyphenToCapital,
-    }
-  );
+  const { name, sourceRoot, domain, skipFormat, templatePath } = options;
+  const target = sourceRoot
+    ? `${sourceRoot}/src/value-objects`
+    : `libs/${domain}/domain/src/value-objects`;
+  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
+    name,
+    hyphenToCapital,
+  });
   appendContent(
     tree,
-    `${sourceRoot}/src/value-objects/index.ts`,
+    `${target}/index.ts`,
     `export * from "./${name}.value-object"`
   );
-
   if (!skipFormat) {
     await formatFiles(tree);
   }
