@@ -7,19 +7,24 @@ export async function domainAggregateGenerator(
   tree: Tree,
   options: DomainAggregateGeneratorSchema
 ) {
-  const { name, sourceRoot, skipFormat, templatePath } = options;
-  generateFiles(
-    tree,
-    templatePath || path.join(__dirname, 'files'),
-    `${sourceRoot}/src/aggregates`,
-    {
+  const { name, domain, sourceRoot, skipFormat, templatePath } = options;
+  let target = `${sourceRoot}/src/aggregates`;
+  if (domain) {
+    target = `libs/${domain}/domain/src/aggregates`;
+  }
+  if (sourceRoot) {
+    generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
       name,
       hyphenToCapital,
-    }
-  );
+    });
+  }
+  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
+    name,
+    hyphenToCapital,
+  });
   appendContent(
     tree,
-    `${sourceRoot}/src/aggregates/index.ts`,
+    `${target}/index.ts`,
     `export * from "./${name}.aggregate"`
   );
   if (!skipFormat) {

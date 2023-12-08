@@ -1,5 +1,5 @@
 export interface ObjectGeneratorSchema {
-  sourceRoot: string;
+  sourceRoot?: string;
   skipFormat?: boolean;
   templatePath?: string;
 }
