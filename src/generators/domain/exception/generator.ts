@@ -11,23 +11,20 @@ export async function domainExceptionGenerator(
   tree: Tree,
   options: DomainExceptionGeneratorSchema
 ) {
-  const { name, sourceRoot, skipFormat, templatePath } = options;
-  generateFiles(
-    tree,
-    templatePath || path.join(__dirname, 'files'),
-    `${sourceRoot}/src/exceptions`,
-    {
-      name,
-      hyphenToCapital,
-      hyphenToSnakeCase,
-    }
-  );
+  const { name, sourceRoot, domain, skipFormat, templatePath } = options;
+  const target = sourceRoot
+    ? `${sourceRoot}/src/exceptions`
+    : `libs/${domain}/domain/src/exceptions`;
+  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
+    name,
+    hyphenToCapital,
+    hyphenToSnakeCase,
+  });
   appendContent(
     tree,
-    `${sourceRoot}/src/exceptions/index.ts`,
+    `${target}/index.ts`,
     `export * from "./${name}.exception"`
   );
-
   if (!skipFormat) {
     await formatFiles(tree);
   }

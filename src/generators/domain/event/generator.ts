@@ -7,21 +7,15 @@ export async function domainEventGenerator(
   tree: Tree,
   options: DomainEventGeneratorSchema
 ) {
-  const { name, sourceRoot, skipFormat, templatePath } = options;
-  generateFiles(
-    tree,
-    templatePath || path.join(__dirname, 'files'),
-    `${sourceRoot}/src/events`,
-    {
-      name,
-      hyphenToCapital,
-    }
-  );
-  appendContent(
-    tree,
-    `${sourceRoot}/src/events/index.ts`,
-    `export * from "./${name}.entity"`
-  );
+  const { name, sourceRoot, domain, skipFormat, templatePath } = options;
+  const target = sourceRoot
+    ? `${sourceRoot}/src/events`
+    : `libs/${domain}/domain/src/events`;
+  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
+    name,
+    hyphenToCapital,
+  });
+  appendContent(tree, `${target}/index.ts`, `export * from "./${name}.entity"`);
 
   if (!skipFormat) {
     await formatFiles(tree);
