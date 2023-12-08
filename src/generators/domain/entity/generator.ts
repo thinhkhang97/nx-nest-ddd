@@ -7,21 +7,16 @@ export async function domainEntityGenerator(
   tree: Tree,
   options: DomainEntityGeneratorSchema
 ) {
-  const { name, sourceRoot, skipFormat, templatePath } = options;
-  generateFiles(
-    tree,
-    templatePath || path.join(__dirname, 'files'),
-    `${sourceRoot}/src/entities`,
-    {
-      name,
-      capitalize,
-    }
-  );
-  appendContent(
-    tree,
-    `${sourceRoot}/src/entities/index.ts`,
-    `export * from "./${name}.entity"`
-  );
+  const { name, sourceRoot, domain, skipFormat, templatePath } = options;
+  let target = `libs/${domain}/domain/src/entities`;
+  if (sourceRoot) {
+    target = `${sourceRoot}/src/entities`;
+  }
+  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
+    name,
+    capitalize,
+  });
+  appendContent(tree, `${target}/index.ts`, `export * from "./${name}.entity"`);
 
   if (!skipFormat) {
     await formatFiles(tree);

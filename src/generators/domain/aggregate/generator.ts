@@ -8,15 +8,9 @@ export async function domainAggregateGenerator(
   options: DomainAggregateGeneratorSchema
 ) {
   const { name, domain, sourceRoot, skipFormat, templatePath } = options;
-  let target = `${sourceRoot}/src/aggregates`;
-  if (domain) {
-    target = `libs/${domain}/domain/src/aggregates`;
-  }
+  let target = `libs/${domain}/domain/src/aggregates`;
   if (sourceRoot) {
-    generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-      name,
-      hyphenToCapital,
-    });
+    target = `${sourceRoot}/src/aggregates`;
   }
   generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
     name,
