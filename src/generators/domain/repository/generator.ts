@@ -7,10 +7,10 @@ export async function domainRepositoryGenerator(
   tree: Tree,
   options: DomainRepositoryGeneratorSchema
 ) {
-  const { name, sourceRoot, domain, skipFormat, templatePath } = options;
+  const { name, sourceRoot, subDomain, skipFormat, templatePath } = options;
   const target = sourceRoot
     ? `${sourceRoot}/src/repositories`
-    : `libs/${domain}/domain/src/repositories`;
+    : `libs/${subDomain}/domain/src/repositories`;
   generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
     name,
     hyphenToCapital,

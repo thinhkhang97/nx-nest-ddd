@@ -7,10 +7,10 @@ export async function domainEventGenerator(
   tree: Tree,
   options: DomainEventGeneratorSchema
 ) {
-  const { name, sourceRoot, domain, skipFormat, templatePath } = options;
+  const { name, sourceRoot, subDomain, skipFormat, templatePath } = options;
   const target = sourceRoot
     ? `${sourceRoot}/src/events`
-    : `libs/${domain}/domain/src/events`;
+    : `libs/${subDomain}/domain/src/events`;
   generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
     name,
     hyphenToCapital,
