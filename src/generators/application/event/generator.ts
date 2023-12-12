@@ -7,9 +7,12 @@ import ts = require('typescript');
 
 function updateIndexFile(
   tree: Tree,
-  { name, sourceRoot }: ApplicationEventGeneratorSchema,
+  { name, sourceRoot, subDomain }: ApplicationEventGeneratorSchema,
   indexContent: string
 ) {
+  const target = sourceRoot
+    ? `${sourceRoot}/src/events`
+    : `libs/${subDomain}/application/src/events`;
   indexContent = appendContentAfterLatestNode(
     indexContent,
     'ImportDeclaration',
@@ -29,37 +32,29 @@ function updateIndexFile(
     },
     ts.ScriptKind.TS
   );
-  tree.write(`${sourceRoot}/src/events/index.ts`, indexContent);
+  tree.write(`${target}/index.ts`, indexContent);
 }
 
 export async function applicationEventGenerator(
   tree: Tree,
   options: ApplicationEventGeneratorSchema
 ) {
-  const { eventName, name, sourceRoot, skipFormat, templatePath } = options;
-  generateFiles(
-    tree,
-    templatePath || path.join(__dirname, 'files'),
-    `${sourceRoot}/src/events`,
-    {
-      name,
-      eventName,
-      hyphenToCapital,
-    }
-  );
-  const indexContent = tree
-    .read(`${sourceRoot}/src/events/index.ts`)
-    ?.toString();
+  const { eventName, subDomain, name, sourceRoot, skipFormat, templatePath } =
+    options;
+  const target = sourceRoot
+    ? `${sourceRoot}/src/events`
+    : `libs/${subDomain}/application/src/events`;
+  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
+    name,
+    eventName,
+    hyphenToCapital,
+  });
+  const indexContent = tree.read(`${target}/index.ts`)?.toString();
   if (!indexContent) {
-    generateFiles(
-      tree,
-      path.join(__dirname, 'index'),
-      `${sourceRoot}/src/events`,
-      {
-        name,
-        hyphenToCapital,
-      }
-    );
+    generateFiles(tree, path.join(__dirname, 'index'), target, {
+      name,
+      hyphenToCapital,
+    });
   } else {
     updateIndexFile(tree, options, indexContent);
   }

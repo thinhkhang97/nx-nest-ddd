@@ -1,5 +1,6 @@
-import { ObjectGeneratorSchema } from '../../../interfaces';
-export interface ApplicationQueryGeneratorSchema extends ObjectGeneratorSchema {
+import { ApplicationComponentGeneratorSchema } from '../types';
+
+export interface ApplicationQueryGeneratorSchema
+  extends ApplicationComponentGeneratorSchema {
   name: string;
-  sourceRoot: string;
 }

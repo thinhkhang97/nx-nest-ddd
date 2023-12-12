@@ -7,9 +7,12 @@ import { ApplicationQueryGeneratorSchema } from './schema';
 
 function updateIndexFile(
   tree: Tree,
-  { name, sourceRoot }: ApplicationQueryGeneratorSchema,
+  { name, sourceRoot, subDomain }: ApplicationQueryGeneratorSchema,
   indexContent: string
 ) {
+  const target = sourceRoot
+    ? `${sourceRoot}/src/queries`
+    : `libs/${subDomain}/application/src/queries`;
   indexContent = appendContentAfterLatestNode(
     indexContent,
     'ExportDeclaration',
@@ -34,36 +37,27 @@ function updateIndexFile(
     },
     ts.ScriptKind.TS
   );
-  tree.write(`${sourceRoot}/src/queries/index.ts`, indexContent);
+  tree.write(`${target}/index.ts`, indexContent);
 }
 
 export async function applicationQueryGenerator(
   tree: Tree,
   options: ApplicationQueryGeneratorSchema
 ) {
-  const { name, sourceRoot, skipFormat, templatePath } = options;
-  generateFiles(
-    tree,
-    templatePath || path.join(__dirname, 'files'),
-    `${sourceRoot}/src/queries`,
-    {
+  const { name, subDomain, sourceRoot, skipFormat, templatePath } = options;
+  const target = sourceRoot
+    ? `${sourceRoot}/src/queries`
+    : `libs/${subDomain}/application/src/queries`;
+  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
+    name,
+    hyphenToCapital,
+  });
+  const indexContent = tree.read(`${target}/index.ts`)?.toString();
+  if (!indexContent) {
+    generateFiles(tree, path.join(__dirname, 'index'), target, {
       name,
       hyphenToCapital,
-    }
-  );
-  const indexContent = tree
-    .read(`${sourceRoot}/src/queries/index.ts`)
-    ?.toString();
-  if (!indexContent) {
-    generateFiles(
-      tree,
-      path.join(__dirname, 'index'),
-      `${sourceRoot}/src/queries`,
-      {
-        name,
-        hyphenToCapital,
-      }
-    );
+    });
   } else {
     updateIndexFile(tree, options, indexContent);
   }
