@@ -15,7 +15,7 @@ export async function domainEventGenerator(
     name,
     hyphenToCapital,
   });
-  appendContent(tree, `${target}/index.ts`, `export * from "./${name}.entity"`);
+  appendContent(tree, `${target}/index.ts`, `export * from "./${name}.event"`);
 
   if (!skipFormat) {
     await formatFiles(tree);
