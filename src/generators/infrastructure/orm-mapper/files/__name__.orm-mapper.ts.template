@@ -1,0 +1,26 @@
+import { Injectable } from '@nestjs/common';
+import { <%=capitalize(name)%>, <%=capitalize(name)%>Props } from '@project/<%=subDomain%>/domain';
+import { CUID } from '@base';
+
+import { <%=capitalize(name)%>OrmEntity } from '../orm-entities/<%=name%>.orm-entity';
+
+@Injectable()
+export class <%=capitalize(name)%>OrmMapper {
+  protected toOrmProps(entity: <%=capitalize(name)%>): <%=capitalize(name)%>OrmEntity {
+    const props = entity.getPropsCopy();
+    // Map entity props to orm props
+    return {
+    };
+  }
+
+  protected toDomainProps(
+    ormEntity: <%=capitalize(name)%>OrmEntity
+  ): <%=capitalize(name)%>Props {
+    const id = new CUID(ormEntity.id);
+    // Map orm props to domain entity props
+    const props: <%=capitalize(name)%>Props = {
+    };
+
+    return { id, props };
+  }
+}
