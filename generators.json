@@ -59,6 +59,11 @@
       "factory": "./src/generators/application/event/generator",
       "schema": "./src/generators/application/event/schema.json",
       "description": "application-event generator"
+    },
+    "infrastructure": {
+      "factory": "./src/generators/infrastructure/generator",
+      "schema": "./src/generators/infrastructure/schema.json",
+      "description": "infrastructure generator"
     }
   }
 }
