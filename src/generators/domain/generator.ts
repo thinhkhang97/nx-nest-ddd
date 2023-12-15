@@ -23,31 +23,31 @@ export async function domainGenerator(
   tree.delete(`libs/${name}/domain/src/lib`);
   await domainAggregateGenerator(tree, {
     name,
-    domain: name,
+    subDomain: name,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/aggregates`,
   });
   await domainEventGenerator(tree, {
     name: `${name}-created`,
-    domain: name,
+    subDomain: name,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/events`,
   });
   await domainExceptionGenerator(tree, {
     name: `${name}-not-found`,
-    domain: name,
+    subDomain: name,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/exceptions`,
   });
   await domainRepositoryGenerator(tree, {
     name,
-    domain: name,
+    subDomain: name,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/repositories`,
   });
   await domainServiceGenerator(tree, {
     name,
-    domain: name,
+    subDomain: name,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/services`,
   });

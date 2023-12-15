@@ -7,9 +7,12 @@ import ts = require('typescript');
 
 function updateIndexFile(
   tree: Tree,
-  { name, sourceRoot }: ApplicationCommandGeneratorSchema,
+  { name, subDomain, sourceRoot }: ApplicationCommandGeneratorSchema,
   indexContent: string
 ) {
+  const target = sourceRoot
+    ? `${sourceRoot}/src/commands/index.ts`
+    : `libs/${subDomain}/application/src/commands/index.ts`;
   indexContent = appendContentAfterLatestNode(
     indexContent,
     'ExportDeclaration',
@@ -34,36 +37,27 @@ function updateIndexFile(
     },
     ts.ScriptKind.TS
   );
-  tree.write(`${sourceRoot}/src/commands/index.ts`, indexContent);
+  tree.write(target, indexContent);
 }
 
 export async function applicationCommandGenerator(
   tree: Tree,
   options: ApplicationCommandGeneratorSchema
 ) {
-  const { name, sourceRoot, skipFormat, templatePath } = options;
-  generateFiles(
-    tree,
-    templatePath || path.join(__dirname, 'files'),
-    `${sourceRoot}/src/commands`,
-    {
+  const { name, subDomain, sourceRoot, skipFormat, templatePath } = options;
+  const target = sourceRoot
+    ? `${sourceRoot}/src/commands`
+    : `libs/${subDomain}/application/src/commands`;
+  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
+    name,
+    hyphenToCapital,
+  });
+  const indexContent = tree.read(`${target}/index.ts`)?.toString();
+  if (!indexContent) {
+    generateFiles(tree, path.join(__dirname, 'index'), target, {
       name,
       hyphenToCapital,
-    }
-  );
-  const indexContent = tree
-    .read(`${sourceRoot}/src/commands/index.ts`)
-    ?.toString();
-  if (!indexContent) {
-    generateFiles(
-      tree,
-      path.join(__dirname, 'index'),
-      `${sourceRoot}/src/commands`,
-      {
-        name,
-        hyphenToCapital,
-      }
-    );
+    });
   } else {
     updateIndexFile(tree, options, indexContent);
   }

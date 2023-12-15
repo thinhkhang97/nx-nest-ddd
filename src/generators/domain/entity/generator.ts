@@ -7,8 +7,8 @@ export async function domainEntityGenerator(
   tree: Tree,
   options: DomainEntityGeneratorSchema
 ) {
-  const { name, sourceRoot, domain, skipFormat, templatePath } = options;
-  let target = `libs/${domain}/domain/src/entities`;
+  const { name, sourceRoot, subDomain, skipFormat, templatePath } = options;
+  let target = `libs/${subDomain}/domain/src/entities`;
   if (sourceRoot) {
     target = `${sourceRoot}/src/entities`;
   }

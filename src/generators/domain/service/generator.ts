@@ -7,10 +7,10 @@ export async function domainServiceGenerator(
   tree: Tree,
   options: DomainServiceGeneratorSchema
 ) {
-  const { name, sourceRoot, domain, skipFormat, templatePath } = options;
+  const { name, sourceRoot, subDomain, skipFormat, templatePath } = options;
   const target = sourceRoot
     ? `${sourceRoot}/src/services`
-    : `libs/${domain}/domain/src/services`;
+    : `libs/${subDomain}/domain/src/services`;
   generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
     name,
     hyphenToCapital,

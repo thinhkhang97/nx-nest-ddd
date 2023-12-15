@@ -13,23 +13,23 @@
       },
       "x-prompt": "What name would you like to use?"
     },
-    "domain": {
+    "subDomain": {
       "type": "string",
-      "description": "Domain contains this value object",
+      "description": "Sub domain contains this value object",
       "$default": {
         "$source": "argv",
         "index": 1
       },
-      "x-prompt": "What domain would you like to use?"
+      "x-prompt": "What sub domain would you like to use?"
     },
     "sourceRoot": {
       "type": "string",
-      "description": "The directory where the new value object will be created. This option will override 'domain' argument"
+      "description": "The directory where the new value object will be created. This option will override 'subDomain' argument"
     },
     "templatePath": {
       "type": "string",
       "description": "A directory where you place the custom template"
     }
   },
-  "required": ["name", "domain"]
+  "required": ["name", "subDomain"]
 }

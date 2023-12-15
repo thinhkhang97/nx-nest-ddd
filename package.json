@@ -5,6 +5,21 @@
   "author": "Khang Thinh Nguyen",
   "homepage": "https://github.com/thinhkhang97/nx-nest-ddd",
   "license": "ISC",
+  "keywords": [
+    "nx",
+    "nest",
+    "nestjs",
+    "ddd",
+    "domain",
+    "driven",
+    "design",
+    "clean",
+    "architecture",
+    "generator",
+    "generators",
+    "schematics",
+    "schematic"
+  ],
   "scripts": {},
   "dependencies": {
     "@nx/devkit": "17.1.3",

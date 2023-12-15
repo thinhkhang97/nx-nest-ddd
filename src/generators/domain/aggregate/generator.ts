@@ -7,8 +7,8 @@ export async function domainAggregateGenerator(
   tree: Tree,
   options: DomainAggregateGeneratorSchema
 ) {
-  const { name, domain, sourceRoot, skipFormat, templatePath } = options;
-  let target = `libs/${domain}/domain/src/aggregates`;
+  const { name, subDomain, sourceRoot, skipFormat, templatePath } = options;
+  let target = `libs/${subDomain}/domain/src/aggregates`;
   if (sourceRoot) {
     target = `${sourceRoot}/src/aggregates`;
   }

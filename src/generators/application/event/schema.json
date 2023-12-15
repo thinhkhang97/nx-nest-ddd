@@ -22,19 +22,23 @@
       },
       "x-prompt": "What is the event handler name?"
     },
-    "sourceRoot": {
+    "subDomain": {
       "type": "string",
-      "description": "",
+      "description": "Sub domain contains this application event handler",
       "$default": {
         "$source": "argv",
-        "index": 2
+        "index": 1
       },
-      "x-prompt": "What is the source root?"
+      "x-prompt": "What sub domain would you like to use?"
+    },
+    "sourceRoot": {
+      "type": "string",
+      "description": "The directory where the new event handler will be created. This option will override 'subDomain' argument"
     },
     "templatePath": {
       "type": "string",
       "description": "A directory where you place the custom template"
     }
   },
-  "required": ["eventName", "name", "sourceRoot"]
+  "required": ["eventName", "name", "subDomain"]
 }

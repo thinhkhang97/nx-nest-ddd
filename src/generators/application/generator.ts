@@ -26,20 +26,20 @@ export async function applicationGenerator(
   );
   await applicationQueryGenerator(tree, {
     name: `get-${name}`,
-    sourceRoot: `libs/${name}/application`,
+    subDomain: name,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/queries`,
   });
   await applicationCommandGenerator(tree, {
     name: `create-${name}`,
-    sourceRoot: `libs/${name}/application`,
+    subDomain: name,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/commands`,
   });
   await applicationEventGenerator(tree, {
     name: `notify-user-after-created-${name}`,
     eventName: `created-${name}`,
-    sourceRoot: `libs/${name}/application`,
+    subDomain: name,
     skipFormat: true,
     templatePath: templatePath && `${templatePath}/events`,
   });
