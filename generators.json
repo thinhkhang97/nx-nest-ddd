@@ -64,6 +64,11 @@
       "factory": "./src/generators/infrastructure/generator",
       "schema": "./src/generators/infrastructure/schema.json",
       "description": "infrastructure generator"
+    },
+    "infrastructure-orm-entity": {
+      "factory": "./src/generators/infrastructure/orm-entity/generator",
+      "schema": "./src/generators/infrastructure/orm-entity/schema.json",
+      "description": "infrastructure-orm-entity generator"
     }
   }
 }
