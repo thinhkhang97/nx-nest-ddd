@@ -1,3 +1,3 @@
-export interface InfrastructureOrmEntityGeneratorSchema {
-  name: string;
-}
+import { InfrastructureComponentGeneratorSchema } from '../types';
+export interface InfrastructureOrmEntityGeneratorSchema
+  extends InfrastructureComponentGeneratorSchema {}
