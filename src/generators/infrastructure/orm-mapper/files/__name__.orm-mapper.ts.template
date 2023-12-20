@@ -10,6 +10,7 @@ export class <%=capitalize(name)%>OrmMapper {
     const props = entity.getPropsCopy();
     // Map entity props to orm props
     return {
+      <%=toOrmProps%>
     };
   }
 
@@ -19,6 +20,7 @@ export class <%=capitalize(name)%>OrmMapper {
     const id = new CUID(ormEntity.id);
     // Map orm props to domain entity props
     const props: <%=capitalize(name)%>Props = {
+      <%=toDomainProps%>
     };
 
     return { id, props };
