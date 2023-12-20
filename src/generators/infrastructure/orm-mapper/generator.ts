@@ -19,25 +19,8 @@ export async function infrastructureOrmMapperGenerator(
   }
   const fileContent = tree
     .read(`libs/${subDomain}/domain/src/aggregates/${name}.aggregate.ts`)
-    .toString();
-  const ast = tsquery.ast(fileContent);
-  const properties = extractPropertiesFromInterface(
-    ast,
-    `${capitalize(name)}Props`
-  );
-  const toOrmProps = properties
-    .map((property) => {
-      if (property.isUndefined || property.nullable) {
-        return `${property.name}: props.${property.name} ?? null`;
-      }
-      return `${property.name}: props.${property.name}`;
-    })
-    .join(',');
-  const toDomainProps = properties
-    .map((property) => {
-      return `${property.name}: ormEntity.${property.name}`;
-    })
-    .join(',');
+    ?.toString();
+  const { toOrmProps, toDomainProps } = getMatchProps(fileContent || '', name);
   generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
     name,
     subDomain,
@@ -55,5 +38,30 @@ export async function infrastructureOrmMapperGenerator(
     await formatFiles(tree);
   }
 }
+
+const getMatchProps = (fileContent: string, name: string) => {
+  const ast = tsquery.ast(fileContent);
+  if (ast === undefined) {
+    return null;
+  }
+  const properties = extractPropertiesFromInterface(
+    ast,
+    `${capitalize(name)}Props`
+  );
+  const toOrmProps = properties
+    .map((property) => {
+      if (property.isUndefined || property.nullable) {
+        return `${property.name}: props.${property.name} ?? null`;
+      }
+      return `${property.name}: props.${property.name}`;
+    })
+    .join(',');
+  const toDomainProps = properties
+    .map((property) => {
+      return `${property.name}: ormEntity.${property.name}`;
+    })
+    .join(',');
+  return { toOrmProps, toDomainProps };
+};
 
 export default infrastructureOrmMapperGenerator;
