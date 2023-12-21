@@ -2,11 +2,13 @@ import { formatFiles, generateFiles, Tree } from '@nx/devkit';
 import { tsquery } from '@phenomnomnominal/tsquery';
 import * as path from 'path';
 import {
-  appendContent,
+  appendContentAfterLatestNode,
   capitalize,
   extractPropertiesFromInterface,
+  hyphenToCapital,
 } from '../../../utils';
 import { InfrastructureOrmMapperGeneratorSchema } from './schema';
+import ts = require('typescript');
 
 export async function infrastructureOrmMapperGenerator(
   tree: Tree,
@@ -28,15 +30,52 @@ export async function infrastructureOrmMapperGenerator(
     toOrmProps,
     toDomainProps,
   });
-  appendContent(
-    tree,
-    `${target}/index.ts`,
-    `export * from "./${name}.orm-mapper"`
-  );
+
+  const indexContent = tree.read(`${target}/index.ts`)?.toString();
+  if (!indexContent) {
+    generateFiles(tree, path.join(__dirname, 'index'), target, {
+      name,
+      hyphenToCapital,
+    });
+  } else {
+    updateIndexFile(tree, options, indexContent);
+  }
 
   if (!skipFormat) {
     await formatFiles(tree);
   }
+}
+
+function updateIndexFile(
+  tree: Tree,
+  { name, subDomain, sourceRoot }: InfrastructureOrmMapperGeneratorSchema,
+  indexContent: string
+) {
+  const target = sourceRoot
+    ? `${sourceRoot}/src/orm-mappers/index.ts`
+    : `libs/${subDomain}/infrastructure/src/orm-mappers/index.ts`;
+  indexContent = appendContentAfterLatestNode(
+    indexContent,
+    'ExportDeclaration',
+    `export * from "./${name}.orm-mapper"`
+  );
+  indexContent = appendContentAfterLatestNode(
+    indexContent,
+    'ImportDeclaration',
+    `import { ${hyphenToCapital(name)}OrmMapper } from './${name}.orm-mapper'`
+  );
+  indexContent = tsquery.replace(
+    indexContent,
+    'Identifier[name="ormMappers"] ~ ArrayLiteralExpression',
+    (node: ts.ArrayLiteralExpression) => {
+      return `[${node.elements
+        .map((e) => e.getText())
+        .concat(`${hyphenToCapital(name)}OrmMapper`)
+        .join(',')}]`;
+    },
+    ts.ScriptKind.TS
+  );
+  tree.write(target, indexContent);
 }
 
 const getMatchProps = (fileContent: string, name: string) => {
