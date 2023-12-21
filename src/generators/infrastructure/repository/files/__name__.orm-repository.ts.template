@@ -1,0 +1,25 @@
+import { Injectable } from '@nestjs/common';
+import {
+  <%= hyphenToCapital(name) %>,
+  <%= hyphenToCapital(name) %>Props,
+  <%= hyphenToCapital(name) %>Repository
+} from '@project/<%= subDomain %>/domain';
+
+import { <%= hyphenToCapital(name) %>OrmEntity } from '../orm-entities';
+import { <%= hyphenToCapital(name) %>OrmMapper } from '../orm-mappers';
+
+@Injectable()
+export class <%= hyphenToCapital(name) %>OrmRepository
+  extends RepositoryBase<
+    <%= hyphenToCapital(name) %>,
+    <%= hyphenToCapital(name) %>Props,
+    <%= hyphenToCapital(name) %>OrmEntity,
+  >
+  implements <%= hyphenToCapital(name) %>Repository
+{
+  constructor(
+    mapper: <%= hyphenToCapital(name) %>OrmMapper,
+  ) {
+    super(mapper);
+  }
+}

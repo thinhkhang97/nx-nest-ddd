@@ -74,6 +74,11 @@
       "factory": "./src/generators/infrastructure/orm-mapper/generator",
       "schema": "./src/generators/infrastructure/orm-mapper/schema.json",
       "description": "infrastructure-orm-mapper generator"
+    },
+    "infrastructure-repository": {
+      "factory": "./src/generators/infrastructure/repository/generator",
+      "schema": "./src/generators/infrastructure/repository/schema.json",
+      "description": "infrastructure-repository generator"
     }
   }
 }

@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "InfrastructureRepository",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "subDomain": {
+      "type": "string",
+      "description": "Sub domain contains this repository",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "What sub domain would you like to use?"
+    },
+    "sourceRoot": {
+      "type": "string",
+      "description": "The directory where the new repository will be created. This option will override 'subDomain' argument"
+    },
+    "templatePath": {
+      "type": "string",
+      "description": "A directory where you place the custom template"
+    }
+  },
+  "required": ["name", "subDomain"]
+}

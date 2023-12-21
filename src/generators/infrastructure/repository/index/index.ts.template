@@ -1,0 +1,10 @@
+import { ClassProvider } from '@nestjs/common';
+import {
+  <%= hyphenToCapital(name) %>Repository,
+} from '@project/insurance/domain';
+
+import { <%= hyphenToCapital(name) %>OrmRepository } from './<%= name %>.orm-repository';
+
+export const repositories: ClassProvider[] = [
+  { provide: <%= hyphenToCapital(name) %>Repository, useClass: <%= hyphenToCapital(name) %>OrmRepository },
+];
