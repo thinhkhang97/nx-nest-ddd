@@ -6,6 +6,7 @@ Supported generators for
 
 - Domain
 - Application
+- Infrastructure
 
 And continuously implement new generators.
 
@@ -26,7 +27,13 @@ npm install -D nx-nest-ddd
 Generate a domain
 
 ```bash
-nx g nx-nest-ddd:domain <name>
+nx g nx-nest-ddd:domain <sub-domain name>
+```
+
+Components: Aggregate, entity, event, exception, repository, service, value object
+
+```bash
+nx g nx-nest-ddd:domain-entity <name> <sub-domain name>
 ```
 
 ### Application generators
@@ -34,7 +41,27 @@ nx g nx-nest-ddd:domain <name>
 Generate an application
 
 ```bash
-nx g nx-nest-ddd:application <name>
+nx g nx-nest-ddd:application <sub-domain name>
+```
+
+Components: Query, command, event
+
+```bash
+nx g nx-nest-ddd:application-query <name> <sub-domain name>
+```
+
+### Infrastructure generators
+
+Generate an infrastructure
+
+```bash
+nx g nx-nest-ddd:infrastructure <sub-domain name>
+```
+
+Components: Orm entity, orm mapper, repository
+
+```bash
+nx g nx-nest-ddd:infrastructure-orm-entity <name> <sub-domain name>
 ```
 
 ## Contributing
