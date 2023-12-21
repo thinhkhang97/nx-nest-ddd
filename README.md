@@ -16,7 +16,7 @@ And continuously implement new generators.
 To install the project, use the following command:
 
 ```bash
-npm install nx-nest-ddd
+npm install -D nx-nest-ddd
 ```
 
 ## Usage

@@ -1,0 +1,3 @@
+import { <%= capitalize(name) %> } from 'orm-entity';
+
+export type <%= capitalize(name) %>OrmEntity = <%= capitalize(name) %>;

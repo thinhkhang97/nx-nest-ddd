@@ -14,6 +14,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "insurance-application": ["libs/insurance/application/src/index.ts"],
       "nx-nest-ddd": ["src/index.ts"]
     }
   },
