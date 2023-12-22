@@ -24,6 +24,8 @@ npm install -D nx-nest-ddd
 
 ### Domain generators
 
+![](https://github.com/thinhkhang97/nx-nest-ddd/blob/demo/demo/Screen%20Recording%20Domain%20generators.gif?raw=true)
+
 Generate a domain
 
 ```bash
@@ -38,6 +40,7 @@ nx g nx-nest-ddd:domain-entity <name> <sub-domain name>
 
 ### Application generators
 
+![](https://github.com/thinhkhang97/nx-nest-ddd/blob/demo/demo/Screen%20Recording%20Application%20generators.gif?raw=true)
 Generate an application
 
 ```bash
