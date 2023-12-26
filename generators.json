@@ -84,6 +84,11 @@
       "factory": "./src/generators/sub-domain/generator",
       "schema": "./src/generators/sub-domain/schema.json",
       "description": "Generate a micro-service contains domain, application and infrastructure layers"
+    },
+    "graphql-ui": {
+      "factory": "./src/generators/graphql-ui/generator",
+      "schema": "./src/generators/graphql-ui/schema.json",
+      "description": "graphql ui generators"
     }
   }
 }
