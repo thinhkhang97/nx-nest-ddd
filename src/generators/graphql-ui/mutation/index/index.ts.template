@@ -1,0 +1,5 @@
+import { Provider } from '@nestjs/common';
+// Mutations
+import { <%= hyphenToCapital(name) %>Mutation } from './<%= name %>.mutation';
+export const mutations: Provider[] = [<%= hyphenToCapital(name) %>Mutation];
+

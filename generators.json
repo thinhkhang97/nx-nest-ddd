@@ -89,6 +89,11 @@
       "factory": "./src/generators/graphql-ui/generator",
       "schema": "./src/generators/graphql-ui/schema.json",
       "description": "graphql ui generators"
+    },
+    "graphql-mutation": {
+      "factory": "./src/generators/graphql-ui/mutation/generator",
+      "schema": "./src/generators/graphql-ui/mutation/schema.json",
+      "description": "graphql ui mutation"
     }
   }
 }
