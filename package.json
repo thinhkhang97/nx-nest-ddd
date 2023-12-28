@@ -1,6 +1,6 @@
 {
   "name": "nx-nest-ddd",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Generators to generate NestJS modules, controllers, services, etc. for Domain Driven Design with Clean Architecture",
   "author": "Khang Thinh Nguyen",
   "homepage": "https://github.com/thinhkhang97/nx-nest-ddd",
