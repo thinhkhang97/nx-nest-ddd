@@ -1,0 +1,26 @@
+import { QueryBus } from '@nestjs/cqrs';
+import { Args, Query, Resolver } from '@nestjs/graphql';
+import { <%= hyphenToCapital(name) %>Query } from '@project/<%=subDomain%>/application';
+
+@Resolver()
+export class <%= hyphenToCapital(name) %>Query {
+  constructor(private readonly _queryBus: QueryBus) {}
+
+  @Query(() => <%= hyphenToCapital(name) %>Result, {
+      name: '<%= hyphenToCapital(name) %>',
+  })
+  public async resolve(
+    @Args({  name: 'input', type: () => <%= hyphenToCapital(name) %>Input })
+    input: <%= hyphenToCapital(name) %>Input
+  ): Promise<<%= hyphenToCapital(name) %>Result> {
+    const result = await this._queryBus.execute<
+      <%= hyphenToCapital(name) %>Query,
+      Either<void>
+    >(new <%= hyphenToCapital(name) %>Query(input));
+    if (result.isErr()) {
+      return { errorMessage: result.unwrapErr().message };
+    }
+
+    return result.unwrap();
+  }
+}

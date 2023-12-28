@@ -11,10 +11,15 @@ export async function domainEventGenerator(
   const target = sourceRoot
     ? `${sourceRoot}/src/events`
     : `libs/${subDomain}/domain/src/events`;
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    hyphenToCapital,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      hyphenToCapital,
+    }
+  );
   appendContent(tree, `${target}/index.ts`, `export * from "./${name}.event"`);
 
   if (!skipFormat) {

@@ -48,10 +48,15 @@ export async function applicationQueryGenerator(
   const target = sourceRoot
     ? `${sourceRoot}/src/queries`
     : `libs/${subDomain}/application/src/queries`;
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    hyphenToCapital,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      hyphenToCapital,
+    }
+  );
   const indexContent = tree.read(`${target}/index.ts`)?.toString();
   if (!indexContent) {
     generateFiles(tree, path.join(__dirname, 'index'), target, {

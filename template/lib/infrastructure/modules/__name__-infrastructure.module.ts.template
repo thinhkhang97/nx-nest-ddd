@@ -1,0 +1,9 @@
+import { Module } from '@nestjs/common';
+import { ormMappers } from '../orm-mappers';
+
+@Module({
+  controllers: [],
+  providers: [ ...ormMappers],
+  exports: [...ormMappers],
+})
+export class <%= hyphenToCapital(name) %>InfrastructureModule {}

@@ -1,0 +1,15 @@
+export interface <%= capitalize(name) %>CreateProps {}
+
+export interface <%= capitalize(name) %>Props {}
+
+export class <%= capitalize(name) %> {
+  public validate(): void {
+    return;
+  }
+
+  public static create(
+    props: <%= capitalize(name) %>CreateProps
+  ): <%= capitalize(name) %> {
+    return new <%= capitalize(name) %>();
+  }
+}
