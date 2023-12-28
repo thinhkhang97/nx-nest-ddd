@@ -94,6 +94,11 @@
       "factory": "./src/generators/graphql-ui/mutation/generator",
       "schema": "./src/generators/graphql-ui/mutation/schema.json",
       "description": "graphql ui mutation"
+    },
+    "graphql-query": {
+      "factory": "./src/generators/graphql-ui/query/generator",
+      "schema": "./src/generators/graphql-ui/query/schema.json",
+      "description": "graphql query generators"
     }
   }
 }
