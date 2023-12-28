@@ -7,6 +7,8 @@ This Nx plugin aims to streamline the development process by generating code for
 - Infrastructure Layer: Managing external dependencies, databases, and other infrastructure-related concerns.
 - GraphQL UI Layer: Providing a GraphQL-based user interface for interacting with the application.
 
+![](https://github.com/thinhkhang97/nx-nest-ddd/blob/demo/demo/Screen%20Recording%20Micro-service%20application%20generator.gif?raw=true)
+
 ## Features
 
 - Code Generation: Automatically generates boilerplate code for various layers based on DDD and Clean Architecture principles.
