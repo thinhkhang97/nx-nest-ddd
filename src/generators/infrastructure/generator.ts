@@ -14,15 +14,15 @@ export async function infrastructureGenerator(
   const { name, tags, templatePath } = options;
   await libraryGenerator(tree, {
     ...options,
-    name: `${name}-application`,
-    directory: `libs/${name}/application`,
+    name: `${name}-infrastructure`,
+    directory: `libs/${name}/infrastructure`,
     projectNameAndRootFormat: 'as-provided',
-    tags: tags ? `layer:application,${tags}` : `layer:application`,
+    tags: tags ? `layer:infrastructure,${tags}` : `layer:infrastructure`,
   });
-  tree.delete(`libs/${name}/application/src/lib`);
+  tree.delete(`libs/${name}/infrastructure/src/lib`);
   tree.write(
-    `libs/${name}/application/src/index.ts`,
-    `export * from './modules/${name}-application.module';`
+    `libs/${name}/infrastructure/src/index.ts`,
+    `export * from './modules/${name}-infrastructure.module';`
   );
   await infrastructureOrmEntityGenerator(tree, {
     name: `${name}`,

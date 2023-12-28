@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import <%= hyphenToCapital(name) %>InfrastructureModule from '@project/<%= name %>/infrastructure
+import <%= hyphenToCapital(name) %>InfrastructureModule from '@project/<%= name %>/infrastructure'
 import { queryHandlers } from '../queries';
 import { commandHandlers } from '../commands';
 

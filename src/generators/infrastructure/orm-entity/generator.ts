@@ -1,6 +1,6 @@
 import { formatFiles, generateFiles, Tree } from '@nx/devkit';
 import * as path from 'path';
-import { appendContent, capitalize } from '../../../utils';
+import { appendContent, hyphenToCapital } from '../../../utils';
 
 import { InfrastructureOrmEntityGeneratorSchema } from './schema';
 
@@ -15,7 +15,7 @@ export async function infrastructureOrmEntityGenerator(
   }
   generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
     name,
-    capitalize,
+    hyphenToCapital,
   });
   appendContent(
     tree,

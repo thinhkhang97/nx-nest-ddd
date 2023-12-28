@@ -13,6 +13,10 @@
       },
       "x-prompt": "What name would you like to use?"
     },
+    "templatePath": {
+      "type": "string",
+      "description": "A directory where you place the custom template"
+    },
     "directory": {
       "description": "A directory where the graphql ui is placed.",
       "type": "string",

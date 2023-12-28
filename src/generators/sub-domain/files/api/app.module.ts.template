@@ -1,0 +1,8 @@
+import { Module } from '@nestjs/common';
+import { <%= hyphenToCapital(name) %>GraphqlUiModule } from '@project/<%= name %>/graphql-ui';
+
+@Module({
+  imports: [<%= hyphenToCapital(name) %>GraphqlUiModule],
+  providers: [],
+})
+export class AppModule {}
