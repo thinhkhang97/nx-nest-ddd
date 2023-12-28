@@ -15,11 +15,16 @@ export async function domainExceptionGenerator(
   const target = sourceRoot
     ? `${sourceRoot}/src/exceptions`
     : `libs/${subDomain}/domain/src/exceptions`;
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    hyphenToCapital,
-    hyphenToSnakeCase,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      hyphenToCapital,
+      hyphenToSnakeCase,
+    }
+  );
   appendContent(
     tree,
     `${target}/index.ts`,

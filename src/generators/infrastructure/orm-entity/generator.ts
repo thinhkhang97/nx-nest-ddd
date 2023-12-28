@@ -13,10 +13,15 @@ export async function infrastructureOrmEntityGenerator(
   if (sourceRoot) {
     target = `${sourceRoot}/src/orm-entities`;
   }
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    hyphenToCapital,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      hyphenToCapital,
+    }
+  );
   appendContent(
     tree,
     `${target}/index.ts`,

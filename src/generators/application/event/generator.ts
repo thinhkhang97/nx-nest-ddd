@@ -44,11 +44,16 @@ export async function applicationEventGenerator(
   const target = sourceRoot
     ? `${sourceRoot}/src/events`
     : `libs/${subDomain}/application/src/events`;
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    eventName,
-    hyphenToCapital,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      eventName,
+      hyphenToCapital,
+    }
+  );
   const indexContent = tree.read(`${target}/index.ts`)?.toString();
   if (!indexContent) {
     generateFiles(tree, path.join(__dirname, 'index'), target, {

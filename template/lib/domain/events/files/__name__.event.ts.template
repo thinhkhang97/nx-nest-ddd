@@ -1,0 +1,7 @@
+export class <%= hyphenToCapital(name) %>Event {
+  public readonly value1: unknown;
+
+  constructor(props: <%= hyphenToCapital(name) %>Event) {
+    this.value1 = props.value1;
+  }
+}

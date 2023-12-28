@@ -11,10 +11,15 @@ export async function domainServiceGenerator(
   const target = sourceRoot
     ? `${sourceRoot}/src/services`
     : `libs/${subDomain}/domain/src/services`;
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    hyphenToCapital,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      hyphenToCapital,
+    }
+  );
   appendContent(
     tree,
     `${target}/index.ts`,

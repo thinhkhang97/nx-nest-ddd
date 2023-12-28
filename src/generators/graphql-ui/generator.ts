@@ -27,13 +27,13 @@ export async function graphqlUiGenerator(
     name: `create-${name}`,
     subDomain: name,
     skipFormat: true,
-    templatePath: templatePath && `${templatePath}/mutation`,
+    templatePath: templatePath && `${templatePath}/mutations`,
   });
   await graphqlQueryGenerator(tree, {
     name: `get-${name}`,
     subDomain: name,
     skipFormat: true,
-    templatePath: templatePath && `${templatePath}/query`,
+    templatePath: templatePath && `${templatePath}/queries`,
   });
   generateFiles(
     tree,

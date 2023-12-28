@@ -12,10 +12,15 @@ export async function domainEntityGenerator(
   if (sourceRoot) {
     target = `${sourceRoot}/src/entities`;
   }
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    capitalize,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      capitalize,
+    }
+  );
   appendContent(tree, `${target}/index.ts`, `export * from "./${name}.entity"`);
 
   if (!skipFormat) {

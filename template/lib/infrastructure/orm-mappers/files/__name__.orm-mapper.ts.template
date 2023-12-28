@@ -1,0 +1,28 @@
+import { Injectable } from '@nestjs/common';
+import { <%=hyphenToCapital(name)%>, <%=hyphenToCapital(name)%>Props } from '@project/<%=subDomain%>/domain';
+import { CUID } from '@base';
+
+import { <%=hyphenToCapital(name)%>OrmEntity } from '../orm-entities/<%=name%>.orm-entity';
+
+@Injectable()
+export class <%=hyphenToCapital(name)%>OrmMapper {
+  protected toOrmProps(entity: <%=hyphenToCapital(name)%>): <%=hyphenToCapital(name)%>OrmEntity {
+    const props = entity.getPropsCopy();
+    // Map entity props to orm props
+    return {
+      <%=toOrmProps%>
+    };
+  }
+
+  protected toDomainProps(
+    ormEntity: <%=hyphenToCapital(name)%>OrmEntity
+  ): <%=hyphenToCapital(name)%>Props {
+    const id = new CUID(ormEntity.id);
+    // Map orm props to domain entity props
+    const props: <%=hyphenToCapital(name)%>Props = {
+      <%=toDomainProps%>
+    };
+
+    return { id, props };
+  }
+}

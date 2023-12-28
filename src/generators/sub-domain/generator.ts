@@ -23,19 +23,19 @@ export async function subDomainGenerator(
   tree.delete(`apps/${name}/api/src/main.ts`);
   await domainGenerator(tree, {
     name,
-    templatePath: templatePath && `${templatePath}/domain`,
+    templatePath: templatePath && `${templatePath}/lib/domain`,
   });
   await infrastructureGenerator(tree, {
     name,
-    templatePath: templatePath && `${templatePath}/infrastructure`,
+    templatePath: templatePath && `${templatePath}/lib/infrastructure`,
   });
   await domainApplicationGenerator(tree, {
     name,
-    templatePath: templatePath && `${templatePath}/application`,
+    templatePath: templatePath && `${templatePath}/lib/application`,
   });
   await graphqlUiGenerator(tree, {
     name,
-    templatePath: templatePath && `${templatePath}/graphql-ui`,
+    templatePath: templatePath && `${templatePath}/lib/graphql-ui`,
   });
   generateFiles(
     tree,

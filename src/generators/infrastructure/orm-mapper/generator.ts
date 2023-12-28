@@ -22,13 +22,18 @@ export async function infrastructureOrmMapperGenerator(
     .read(`libs/${subDomain}/domain/src/aggregates/${name}.aggregate.ts`)
     ?.toString();
   const { toOrmProps, toDomainProps } = getMatchProps(fileContent || '', name);
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    subDomain,
-    hyphenToCapital,
-    toOrmProps,
-    toDomainProps,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      subDomain,
+      hyphenToCapital,
+      toOrmProps,
+      toDomainProps,
+    }
+  );
 
   const indexContent = tree.read(`${target}/index.ts`)?.toString();
   if (!indexContent) {

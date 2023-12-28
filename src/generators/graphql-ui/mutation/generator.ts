@@ -41,11 +41,16 @@ export async function graphqlMutationGenerator(
   const target = sourceRoot
     ? `${sourceRoot}/src/mutations`
     : `libs/${subDomain}/graphql-ui/src/mutations`;
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    subDomain,
-    hyphenToCapital,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      subDomain,
+      hyphenToCapital,
+    }
+  );
   const indexContent = tree.read(`${target}/index.ts`)?.toString();
   if (!indexContent) {
     generateFiles(tree, path.join(__dirname, 'index'), target, {

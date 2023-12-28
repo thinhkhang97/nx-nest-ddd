@@ -1,0 +1,11 @@
+import {ValueObject} from '@project/shared'
+
+export class <%= hyphenToCapital(name) %>VO extends ValueObject {
+ constructor(value: unknown) {
+    // Update value
+  }
+
+  protected validate(value: unknown): void {
+    // Validate the value
+  }
+}

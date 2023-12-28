@@ -12,10 +12,15 @@ export async function domainAggregateGenerator(
   if (sourceRoot) {
     target = `${sourceRoot}/src/aggregates`;
   }
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    hyphenToCapital,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      hyphenToCapital,
+    }
+  );
   appendContent(
     tree,
     `${target}/index.ts`,

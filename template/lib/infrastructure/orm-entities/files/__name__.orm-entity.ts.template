@@ -1,0 +1,3 @@
+import { <%= hyphenToCapital(name) %> } from 'orm-entity';
+
+export type <%= hyphenToCapital(name) %>OrmEntity = <%= hyphenToCapital(name) %>;
