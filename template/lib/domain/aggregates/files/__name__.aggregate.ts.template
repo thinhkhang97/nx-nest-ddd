@@ -1,0 +1,18 @@
+import {AggregateRoot} from '@project/shared'
+
+export interface <%= hyphenToCapital(name) %>Props {
+  props: unknown;
+}
+
+export class <%= hyphenToCapital(name) %> extends AggregateRoot {
+  constructor(private readonly data: { id: string; props: <%= hyphenToCapital(name) %>Props }) {}
+
+  public validate(): void {
+    return;
+  }
+
+  public static create(props: <%= hyphenToCapital(name) %>Props): <%= hyphenToCapital(name) %> {
+    const id = '';
+    return new <%= hyphenToCapital(name) %>({ id, props });
+  }
+}

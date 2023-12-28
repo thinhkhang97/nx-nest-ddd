@@ -15,11 +15,16 @@ export async function infrastructureRepositoryGenerator(
   if (sourceRoot) {
     target = `${sourceRoot}/src/repositories`;
   }
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    subDomain,
-    hyphenToCapital,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      subDomain,
+      hyphenToCapital,
+    }
+  );
 
   const indexContent = tree.read(`${target}/index.ts`)?.toString();
   if (!indexContent) {

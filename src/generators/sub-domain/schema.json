@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "SubDomain",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use?"
+    },
+    "templatePath": {
+      "type": "string",
+      "description": "A directory where you place the custom template"
+    },
+    "directory": {
+      "description": "A directory where the application is placed.",
+      "type": "string",
+      "alias": "dir"
+    },
+    "projectNameAndRootFormat": {
+      "description": "Whether to generate the project name and root directory as provided (`as-provided`) or generate them composing their values and taking the configured layout into account (`derived`).",
+      "type": "string",
+      "enum": ["as-provided", "derived"]
+    },
+    "tags": {
+      "description": "Add tags to the application (used for linting).",
+      "type": "string",
+      "alias": "t"
+    },
+    "skipFormat": {
+      "description": "Skip formatting files.",
+      "type": "boolean",
+      "default": true
+    },
+    "strict": {
+      "description": "Whether to enable tsconfig strict mode or not.",
+      "type": "boolean",
+      "default": true
+    },
+    "setParserOptionsProject": {
+      "type": "boolean",
+      "description": "Whether or not to configure the ESLint \"parserOptions.project\" option. We do not do this by default for lint performance reasons.",
+      "default": false
+    },
+    "skipPackageJson": {
+      "description": "Do not add dependencies to `package.json`.",
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": ["name"]
+}

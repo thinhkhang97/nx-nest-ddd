@@ -1,0 +1,14 @@
+import { QueryHandler } from '@nestjs/cqrs';
+
+import { <%= hyphenToCapital(name) %>Query } from './<%= name %>.query';
+
+@QueryHandler(<%= hyphenToCapital(name) %>Query)
+export class <%= hyphenToCapital(name) %>QueryHandler {
+  constructor() {
+    // Initialize
+  }
+
+  protected async handle(query: <%= hyphenToCapital(name) %>Query): Promise<unknown> {
+    return;
+  }
+}

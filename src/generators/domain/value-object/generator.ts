@@ -11,10 +11,15 @@ export async function domainValueObjectGenerator(
   const target = sourceRoot
     ? `${sourceRoot}/src/value-objects`
     : `libs/${subDomain}/domain/src/value-objects`;
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    hyphenToCapital,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      hyphenToCapital,
+    }
+  );
   appendContent(
     tree,
     `${target}/index.ts`,

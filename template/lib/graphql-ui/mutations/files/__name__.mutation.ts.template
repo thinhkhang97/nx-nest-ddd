@@ -1,0 +1,26 @@
+import { CommandBus } from '@nestjs/cqrs';
+import { Args, Mutation, Resolver } from '@nestjs/graphql';
+import { <%= hyphenToCapital(name) %>Command } from '@project/<%=subDomain%>/application';
+
+@Resolver()
+export class <%= hyphenToCapital(name) %>Mutation {
+  constructor(private readonly _commandBus: CommandBus) {}
+
+  @Mutation(() => <%= hyphenToCapital(name) %>Result, {
+      name: '<%= hyphenToCapital(name) %>',
+  })
+  public async resolve(
+    @Args({  name: 'input', type: () => <%= hyphenToCapital(name) %>Input })
+    input: <%= hyphenToCapital(name) %>Input
+  ): Promise<<%= hyphenToCapital(name) %>Result> {
+    const result = await this._commandBus.execute<
+      <%= hyphenToCapital(name) %>Command,
+      Either<void>
+    >(new <%= hyphenToCapital(name) %>Command(input));
+    if (result.isErr()) {
+      return { status: 'failed', errorMessage: result.unwrapErr().message };
+    }
+
+    return { status: 'success' };
+  }
+}

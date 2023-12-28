@@ -1,0 +1,5 @@
+import { Provider } from '@nestjs/common';
+// Queries
+import { <%= hyphenToCapital(name) %>Query } from './<%= name %>.query';
+export const queries: Provider[] = [<%= hyphenToCapital(name) %>Query];
+

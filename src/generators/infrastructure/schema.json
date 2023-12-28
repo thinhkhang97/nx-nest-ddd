@@ -14,6 +14,10 @@
       "x-prompt": "What is the subdomain name?",
       "pattern": "(?:^@[a-zA-Z0-9-*~][a-zA-Z0-9-*._~]*\\/[a-zA-Z0-9-~][a-zA-Z0-9-._~]*|^[a-zA-Z][^:]*)$"
     },
+    "templatePath": {
+      "type": "string",
+      "description": "A directory where you place the custom template"
+    },
     "directory": {
       "description": "A directory where the infrastructure is placed.",
       "type": "string",

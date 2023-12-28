@@ -3,7 +3,6 @@ import { tsquery } from '@phenomnomnominal/tsquery';
 import * as path from 'path';
 import {
   appendContentAfterLatestNode,
-  capitalize,
   extractPropertiesFromInterface,
   hyphenToCapital,
 } from '../../../utils';
@@ -23,13 +22,18 @@ export async function infrastructureOrmMapperGenerator(
     .read(`libs/${subDomain}/domain/src/aggregates/${name}.aggregate.ts`)
     ?.toString();
   const { toOrmProps, toDomainProps } = getMatchProps(fileContent || '', name);
-  generateFiles(tree, templatePath || path.join(__dirname, 'files'), target, {
-    name,
-    subDomain,
-    capitalize,
-    toOrmProps,
-    toDomainProps,
-  });
+  generateFiles(
+    tree,
+    templatePath ? `${templatePath}/files` : path.join(__dirname, 'files'),
+    target,
+    {
+      name,
+      subDomain,
+      hyphenToCapital,
+      toOrmProps,
+      toDomainProps,
+    }
+  );
 
   const indexContent = tree.read(`${target}/index.ts`)?.toString();
   if (!indexContent) {
@@ -85,7 +89,7 @@ const getMatchProps = (fileContent: string, name: string) => {
   }
   const properties = extractPropertiesFromInterface(
     ast,
-    `${capitalize(name)}Props`
+    `${hyphenToCapital(name)}Props`
   );
   const toOrmProps = properties
     .map((property) => {
