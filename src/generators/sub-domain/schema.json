@@ -17,6 +17,10 @@
       "type": "string",
       "description": "A directory where you place the custom template"
     },
+    "prefixImport": {
+      "description": "The library name used to import it, like @myorg.",
+      "type": "string"
+    },
     "directory": {
       "description": "A directory where the application is placed.",
       "type": "string",

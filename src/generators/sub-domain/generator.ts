@@ -12,7 +12,13 @@ export async function subDomainGenerator(
   tree: Tree,
   options: SubDomainGeneratorSchema
 ) {
-  const { name, templatePath, projectNameAndRootFormat, directory } = options;
+  const {
+    name,
+    templatePath,
+    projectNameAndRootFormat,
+    directory,
+    prefixImport,
+  } = options;
   await applicationGenerator(tree, {
     ...options,
     projectNameAndRootFormat: projectNameAndRootFormat || 'as-provided',
@@ -23,18 +29,22 @@ export async function subDomainGenerator(
   tree.delete(`apps/${name}/api/src/main.ts`);
   await domainGenerator(tree, {
     name,
+    importPath: `${prefixImport}/${name}/domain`,
     templatePath: templatePath && `${templatePath}/lib/domain`,
   });
   await infrastructureGenerator(tree, {
     name,
+    importPath: `${prefixImport}/${name}/infrastructure`,
     templatePath: templatePath && `${templatePath}/lib/infrastructure`,
   });
   await domainApplicationGenerator(tree, {
     name,
+    importPath: `${prefixImport}/${name}/application`,
     templatePath: templatePath && `${templatePath}/lib/application`,
   });
   await graphqlUiGenerator(tree, {
     name,
+    importPath: `${prefixImport}/${name}/graphql-ui`,
     templatePath: templatePath && `${templatePath}/lib/graphql-ui`,
   });
   generateFiles(
