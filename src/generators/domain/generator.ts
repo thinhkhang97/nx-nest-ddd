@@ -18,7 +18,7 @@ export async function domainGenerator(
     name: `${name}-domain`,
     directory: `libs/${name}/domain`,
     projectNameAndRootFormat: 'as-provided',
-    tags: tags ? `layer:domain,${tags}` : `layer:domain`,
+    tags: tags ? `type:domain,${tags}` : `type:domain`,
   });
   tree.delete(`libs/${name}/domain/src/lib`);
   await domainAggregateGenerator(tree, {

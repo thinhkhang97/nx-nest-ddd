@@ -30,21 +30,25 @@ export async function subDomainGenerator(
   await domainGenerator(tree, {
     name,
     importPath: `${prefixImport}/${name}/domain`,
+    tags: `scope:${name}`,
     templatePath: templatePath && `${templatePath}/lib/domain`,
   });
   await infrastructureGenerator(tree, {
     name,
     importPath: `${prefixImport}/${name}/infrastructure`,
+    tags: `scope:${name}`,
     templatePath: templatePath && `${templatePath}/lib/infrastructure`,
   });
   await domainApplicationGenerator(tree, {
     name,
     importPath: `${prefixImport}/${name}/application`,
+    tags: `scope:${name}`,
     templatePath: templatePath && `${templatePath}/lib/application`,
   });
   await graphqlUiGenerator(tree, {
     name,
     importPath: `${prefixImport}/${name}/graphql-ui`,
+    tags: `scope:${name}`,
     templatePath: templatePath && `${templatePath}/lib/graphql-ui`,
   });
   generateFiles(

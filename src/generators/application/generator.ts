@@ -17,7 +17,7 @@ export async function applicationGenerator(
     name: `${name}-application`,
     directory: `libs/${name}/application`,
     projectNameAndRootFormat: 'as-provided',
-    tags: tags ? `layer:application,${tags}` : `layer:application`,
+    tags: tags ? `type:application,${tags}` : `type:application`,
   });
   tree.delete(`libs/${name}/application/src/lib`);
   tree.write(
