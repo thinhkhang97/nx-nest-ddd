@@ -4,7 +4,7 @@
   "description": "Generators to generate NestJS modules, controllers, services, etc. for Domain Driven Design with Clean Architecture",
   "author": "Khang Thinh Nguyen",
   "homepage": "https://github.com/thinhkhang97/nx-nest-ddd",
-  "license": "ISC",
+  "license": "MIT",
   "keywords": [
     "nx",
     "nest",
