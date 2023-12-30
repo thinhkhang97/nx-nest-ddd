@@ -59,10 +59,15 @@ export async function applicationCommandGenerator(
   );
   const indexContent = tree.read(`${target}/index.ts`)?.toString();
   if (!indexContent) {
-    generateFiles(tree, path.join(__dirname, 'index'), target, {
-      name,
-      hyphenToCapital,
-    });
+    generateFiles(
+      tree,
+      templatePath ? `${templatePath}/index` : path.join(__dirname, 'index'),
+      target,
+      {
+        name,
+        hyphenToCapital,
+      }
+    );
   } else {
     updateIndexFile(tree, options, indexContent);
   }
