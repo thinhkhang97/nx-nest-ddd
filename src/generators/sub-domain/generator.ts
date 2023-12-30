@@ -24,6 +24,7 @@ export async function subDomainGenerator(
     projectNameAndRootFormat: projectNameAndRootFormat || 'as-provided',
     name: `${name}-api`,
     directory: directory || `apps/${name}/api`,
+    tags: 'scope:app',
   });
   tree.delete(`apps/${name}/api/src/app`);
   tree.delete(`apps/${name}/api/src/main.ts`);

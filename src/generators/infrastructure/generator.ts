@@ -17,7 +17,7 @@ export async function infrastructureGenerator(
     name: `${name}-infrastructure`,
     directory: `libs/${name}/infrastructure`,
     projectNameAndRootFormat: 'as-provided',
-    tags: tags ? `layer:infrastructure,${tags}` : `layer:infrastructure`,
+    tags: tags ? `type:infrastructure,${tags}` : `type:infrastructure`,
   });
   tree.delete(`libs/${name}/infrastructure/src/lib`);
   tree.write(

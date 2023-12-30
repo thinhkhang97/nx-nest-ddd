@@ -19,6 +19,7 @@ export async function infrastructureOrmEntityGenerator(
     target,
     {
       name,
+      subDomain,
       hyphenToCapital,
     }
   );
