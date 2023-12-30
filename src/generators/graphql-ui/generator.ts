@@ -16,7 +16,7 @@ export async function graphqlUiGenerator(
     name: `${name}-graphql-ui`,
     directory: `libs/${name}/graphql-ui`,
     projectNameAndRootFormat: 'as-provided',
-    tags: tags ? `layer:ui,${tags}` : `layer:ui`,
+    tags: tags ? `type:ui,${tags}` : `type:ui`,
   });
   tree.delete(`libs/${name}/graphql-ui/src/lib`);
   tree.write(

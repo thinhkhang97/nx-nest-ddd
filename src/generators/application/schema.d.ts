@@ -1,5 +1,6 @@
 export interface ApplicationGeneratorSchema {
   name: string;
+  templatePath?: string;
   directory?: string;
   importPath?: string;
   publishable?: boolean;
@@ -22,5 +23,4 @@ export interface ApplicationGeneratorSchema {
   setParserOptionsProject?: boolean;
   skipPackageJson?: boolean;
   simpleName?: boolean;
-  templatePath?: string;
 }
