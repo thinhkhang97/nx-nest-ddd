@@ -28,11 +28,20 @@ export async function infrastructureRepositoryGenerator(
 
   const indexContent = tree.read(`${target}/index.ts`)?.toString();
   if (!indexContent) {
-    generateFiles(tree, path.join(__dirname, 'index'), target, {
-      name,
-      subDomain,
-      hyphenToCapital,
-    });
+    generateFiles(
+      tree,
+      templatePath
+        ? `${templatePath}/index`
+        : templatePath
+        ? `${templatePath}/index`
+        : path.join(__dirname, 'index'),
+      target,
+      {
+        name,
+        subDomain,
+        hyphenToCapital,
+      }
+    );
   } else {
     updateIndexFile(tree, options, indexContent);
   }

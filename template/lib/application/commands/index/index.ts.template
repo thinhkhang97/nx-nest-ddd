@@ -1,0 +1,6 @@
+import { Provider } from '@nestjs/common';
+// Commands
+export * from './<%= name %>/<%= name %>.command';
+// Handlers
+import { <%= hyphenToCapital(name) %>CommandHandler } from './<%= name %>/<%= name %>.command-handler';
+export const commandHandlers: Provider[] = [<%= hyphenToCapital(name) %>CommandHandler];

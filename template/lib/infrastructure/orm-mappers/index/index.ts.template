@@ -1,0 +1,6 @@
+import { Provider } from '@nestjs/common';
+
+export * from './<%= name %>.orm-mapper';
+
+import { <%= hyphenToCapital(name) %>OrmMapper } from './<%= name %>.orm-mapper';
+export const ormMappers: Provider[] = [<%= hyphenToCapital(name) %>OrmMapper];
